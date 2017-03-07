@@ -10,6 +10,8 @@
 
 @interface SearchTableViewController ()
 
+@property NSError *error;
+
 @end
 
 @implementation SearchTableViewController
@@ -17,11 +19,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    [self.searchTextField becomeFirstResponder];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.error = nil;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,80 +35,35 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 3;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0 || section == 1) {
-//        return 1;
-//    } else {
-//        return 3;
-//    }
-//}
 
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    UITableViewCell *cell;
-//    if (indexPath.section == 0) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"SearchCell" forIndexPath:indexPath];
-//    } else if (indexPath.section == 1) {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCell" forIndexPath:indexPath];
-//    } else {
-//        cell = [tableView dequeueReusableCellWithIdentifier:@"ResultCell" forIndexPath:indexPath];
-//    }
-//    
-//    [self configureCell:cell withSection:indexPath.section];
-//    
-//    return cell;
-//}
+#pragma mark - ResultsTableViewControllerDelegate methods
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)resultsTableViewControllerDidCancel:(ResultsTableViewController *)controller {
+    [controller dismissViewControllerAnimated:true completion:nil];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)resultsTableViewController:(ResultsTableViewController *)controller didFinishAddingSet:(Set *)set {
+    NSLog(@"set to add: %@", set.productName);
+    [self.dataModel.sets addObject:set];
+    
+    [controller dismissViewControllerAnimated:true completion:nil];
+    NSLog(@"set added");
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ResultsSegue"]) {
-        ResultsTableViewController *controller = (ResultsTableViewController *)segue.destinationViewController;
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        ResultsTableViewController *controller = (ResultsTableViewController *)navController.topViewController;
+        
+        controller.delegate = self;
         controller.jsonData = sender;
+        if (self.error) {
+            controller.error = self.error;
+        }
     }
 }
 
@@ -113,7 +72,6 @@
 #pragma mark - Actions
 
 - (IBAction)search:(UIButton *)sender {
-    NSLog(@"Searched for: %@", self.searchTextField.text);
     [self performSearchRequest];
 }
 
@@ -129,17 +87,30 @@
     NSString *cookie = @"csAgeAndCountry={\"age\":\"18\",\"countrycode\":\"US\"}";
     [request addValue:cookie forHTTPHeaderField: @"cookie"];
     [request addValue:@"en-US" forHTTPHeaderField:@"PROMARKETPREF"];
-
+    
     [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-
-        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-
+        
+        NSDictionary *jsonData;
+        
+        if (data) {
+            jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        }
+        
+        if (error != NULL) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             // When json is loaded, perform segue with data
+            if (error) {
+                self.error = error;
+            }
             [self performSegueWithIdentifier:@"ResultsSegue" sender:jsonData];
         });
 
     }] resume];
+    
+    // TODO: add loading icon
 }
 
 

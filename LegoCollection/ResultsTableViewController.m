@@ -10,15 +10,12 @@
 
 @interface ResultsTableViewController ()
 
+@property Set *set;
+
 @end
 
-@implementation ResultsTableViewController
 
-NSString *productName;
-NSString *productNumber;
-UIImage *productImage;
-NSMutableArray *bricks;
-NSString *baseImageURL;
+@implementation ResultsTableViewController
 
 
 - (void)viewDidLoad {
@@ -44,12 +41,7 @@ NSString *baseImageURL;
     if (section == 0) {
         return 1;
     } else {
-        if (bricks) {
-            return [bricks count];
-        } else {
-            return 0;
-        }
-        
+        return [self.set.bricks count];
     }
 }
 
@@ -58,9 +50,9 @@ NSString *baseImageURL;
     UITableViewCell *cell;
     
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ResultsProductCell" forIndexPath:indexPath];
     } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"BrickCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ResultsBrickCell" forIndexPath:indexPath];
     }
     
     [self configureCell:cell withSection:indexPath.section indexPath:indexPath];
@@ -120,6 +112,18 @@ NSString *baseImageURL;
 }
 */
 
+
+#pragma mark - Actions
+
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    [self.delegate resultsTableViewControllerDidCancel:self];
+}
+
+- (IBAction)addToSets:(UIBarButtonItem *)sender {
+    [self.delegate resultsTableViewController:self didFinishAddingSet:self.set];
+}
+
+
 #pragma mark - Helper methods
 
 - (void)configureCell:(UITableViewCell *)cell withSection:(NSInteger)section indexPath:(NSIndexPath *)indexPath {
@@ -127,91 +131,60 @@ NSString *baseImageURL;
         UILabel *productNameLabel = [cell viewWithTag:1000];
         UIImageView *productImageView = [cell viewWithTag:1003];
         
-        if (productName) {
-            productNameLabel.text = [[productName stringByAppendingString:@": "] stringByAppendingString:productNumber];
-        }
+        productNameLabel.text = self.set.productName;
+        productImageView.image = self.set.productImage;
         
-        if (productImage) {
-            productImageView.image = productImage;
+        if (self.error) {
+            productNameLabel.text = self.error.localizedDescription;
         }
     } else {
-        if (bricks) {
-            NSDictionary *brickDict = bricks[indexPath.row];
-            //NSLog(@"index for cell: %ld", (long)indexPath.row);
-            
-            //cell.textLabel.text = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
-            UIImageView *brickImageView = [cell viewWithTag:1001];
-            UILabel *itemNumberLabel = [cell viewWithTag:1002];
-            
-            NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:[brickDict objectForKey:@"Asset"]]];
-            NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
-            brickImageView.image = [UIImage imageWithData:brickImageData];
-            
-            itemNumberLabel.text = [NSString stringWithFormat:@"Item Number: %@", [brickDict objectForKey:@"ItemNo"]];
-        }
+        Brick *brick = self.set.bricks[indexPath.row];
+
+        UIImageView *brickImageView = [cell viewWithTag:1001];
+        UILabel *itemNumberLabel = [cell viewWithTag:1002];
+        
+        brickImageView.image = brick.brickImage;
+        itemNumberLabel.text = brick.itemNumber;
     }
 }
 
-//- (void)performSearchRequest {
-//    NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultConfiguration];
-//    //    NSURL *url = [NSURL URLWithString:@"https://www.lego.com/en-US/service/rpservice/getproduct?productnumber=31049&isSalesFlow=true"];
-//    NSString *urlString = [[@"https://www.lego.com/en-US/service/rpservice/getproduct?productnumber=" stringByAppendingString:self.searchTextField.text] stringByAppendingString:@"&isSalesFlow=true"];
-//    NSURL *url = [NSURL URLWithString:urlString];
-//
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    [request setHTTPMethod:@"GET"];
-//    NSString *cookie = @"csAgeAndCountry={\"age\":\"18\",\"countrycode\":\"US\"}";
-//    [request addValue:cookie forHTTPHeaderField: @"cookie"];
-//    [request addValue:@"en-US" forHTTPHeaderField:@"PROMARKETPREF"];
-//
-//    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-//
-//        //NSLog(@"Got response %@ with error %@.\n", response, error);
-//        //NSLog(@"DATA:\n%@\nEND DATA\n", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-//
-//        //        NSDictionary *jsonData = [NSJSONSerialization
-//        //                                  JSONObjectWithData:urlData
-//        //                                  options:NSJSONReadingMutableContainers
-//        //                                  error:&serializeError];
-//
-//        NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-//
-//        //NSLog(@"json data: %@", jsonData);
-//        NSString *baseURL = [jsonData objectForKey:@"ImageBaseUrl"];
-//        NSString *productImage = [[jsonData objectForKey:@"Product"] objectForKey:@"Asset"];
-//        //NSLog(@"%@%@", baseURL, productImage);
-//        NSURL *productImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", baseURL, productImage]];
-//        NSData *imageData = [NSData dataWithContentsOfURL:productImageURL];
-//        self.productImageView.image = [UIImage imageWithData:imageData];
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            //When json is loaded refresh the image
-//            self.productImageView.image = [UIImage imageWithData:imageData];
-//            [self.productImageView setNeedsLayout];
-//        });
-//
-//
-//        //NSLog(@"json data: %@", [jsonData objectForKey:@"Product"]);
-//        //NSLog(@"json data: %@", [[jsonData objectForKey:@"Product"] objectForKey:@"Asset"]);
-//
-//    }] resume];
-//}
-
 -(void)parseJSONData {
-    productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
-    productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
-
-    bricks = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
+    // TODO: error message if no data
     
-    baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
+    // Create new Set
+    self.set = [[Set alloc] init];
+    
+    // Set properties
+    self.set.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
+    
+    NSString *baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
     
     NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
     NSURL *productImageURL = [NSURL URLWithString:productImageString];
     NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
-    productImage = [UIImage imageWithData:productImageData];
+    self.set.productImage = [UIImage imageWithData:productImageData];
+    
+    NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
+    NSMutableArray *bricks = [NSMutableArray array];
+    for (NSDictionary *brickDict in bricksJSON) {
+        // Create new brick
+        Brick *brick = [[Brick alloc] init];
+        
+        // Set properties
+        brick.itemNumber = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
+        
+        NSString *brickImage = [brickDict objectForKey:@"Asset"];
+        NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
+        NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
+        brick.brickImage = [UIImage imageWithData:brickImageData];
+        
+        // Add to bricks array
+        [bricks addObject:brick];
+    }
+    self.set.bricks = bricks;
     
     [self.tableView reloadData];
 }
+
 
 @end

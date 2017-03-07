@@ -7,9 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Set.h"
+#import "Brick.h"
+
+@class ResultsTableViewController;
+@protocol ResultsTableViewControllerDelegate <NSObject>
+
+- (void)resultsTableViewControllerDidCancel:(ResultsTableViewController *)controller;
+- (void)resultsTableViewController:(ResultsTableViewController *)controller didFinishAddingSet:(Set *)set;
+
+@end
 
 @interface ResultsTableViewController : UITableViewController
 
+@property (nonatomic) id <ResultsTableViewControllerDelegate> delegate;
 @property (nonatomic) NSDictionary *jsonData;
+@property (nonatomic) NSError *error;
+
+- (IBAction)cancel:(UIBarButtonItem *)sender;
+- (IBAction)addToSets:(UIBarButtonItem *)sender;
+
 
 @end

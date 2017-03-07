@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataModel.h"
+#import "SetTableViewController.h"
+#import "SearchTableViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
