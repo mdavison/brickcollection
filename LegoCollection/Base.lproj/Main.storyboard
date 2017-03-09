@@ -147,6 +147,48 @@
             </objects>
             <point key="canvasLocation" x="1836" y="-588"/>
         </scene>
+        <!--Missing Bricks-->
+        <scene sceneID="pGW-ts-69z">
+            <objects>
+                <tableViewController id="YsZ-eP-T7T" customClass="MissingBricksTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="187" sectionHeaderHeight="28" sectionFooterHeight="28" id="p5G-2s-fCn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MissingBrickCell" rowHeight="112" id="MvJ-gb-DqK">
+                                <rect key="frame" x="0.0" y="28" width="320" height="112"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MvJ-gb-DqK" id="dXm-Cn-Db6">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="3000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FiU-ib-ZXe">
+                                            <rect key="frame" x="8" y="8" width="96" height="96"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tb1-ML-yvo">
+                                            <rect key="frame" x="112" y="45" width="200" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YsZ-eP-T7T" id="4k4-aV-nl0"/>
+                            <outlet property="delegate" destination="YsZ-eP-T7T" id="Iya-g8-J67"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Missing Bricks" id="WOv-3g-KS7"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9r-hs-Kjj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442.5" y="198.59154929577466"/>
+        </scene>
         <!--Search-->
         <scene sceneID="TCR-M3-h25">
             <objects>
@@ -299,11 +341,12 @@
                     <connections>
                         <segue destination="Tji-Ui-DvR" kind="relationship" relationship="viewControllers" id="4MN-t3-54u"/>
                         <segue destination="Vla-Uk-c1f" kind="relationship" relationship="viewControllers" id="sOL-fM-h1Y"/>
+                        <segue destination="mdq-gU-qkU" kind="relationship" relationship="viewControllers" id="fEp-qp-98z"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9q-Fx-he8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1194" y="-963"/>
+            <point key="canvasLocation" x="-1414" y="-588"/>
         </scene>
         <!--Sets-->
         <scene sceneID="Hxu-EY-rAB">
@@ -341,6 +384,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yuy-Lg-lBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1136.25" y="-588.38028169014081"/>
+        </scene>
+        <!--Missing Bricks-->
+        <scene sceneID="12T-iE-Naa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mdq-gU-qkU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Missing Bricks" id="DjC-sV-ZxP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RrL-tt-dFs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YsZ-eP-T7T" kind="relationship" relationship="rootViewController" id="H1d-0z-BLY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="94p-MP-6Ub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="198.59154929577466"/>
         </scene>
     </scenes>
     <resources>

@@ -214,6 +214,9 @@
     
     [self.selectedBricks removeAllObjects];
     
+    // Hide the toolbar
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    
     [self.tableView reloadData];
 }
 
@@ -223,6 +226,9 @@
     }
     
     [self.selectedBricks removeAllObjects];
+    
+    // Hide the toolbar
+    [self.navigationController setToolbarHidden:YES animated:YES];
     
     [self.tableView reloadData];
 }

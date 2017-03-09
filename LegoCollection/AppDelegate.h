@@ -10,6 +10,7 @@
 #import "DataModel.h"
 #import "SetTableViewController.h"
 #import "SearchTableViewController.h"
+#import "MissingBricksTableViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

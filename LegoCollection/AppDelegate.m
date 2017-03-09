@@ -30,6 +30,10 @@ DataModel *dataModel;
     SearchTableViewController *searchController = (SearchTableViewController *)navController.topViewController;
     searchController.dataModel = dataModel;
     
+    navController = (UINavigationController *)tabBarController.viewControllers[2];
+    MissingBricksTableViewController *missingBricksController = (MissingBricksTableViewController *)navController.topViewController;
+    missingBricksController.dataModel = dataModel;
+    
     return YES;
 }
 
