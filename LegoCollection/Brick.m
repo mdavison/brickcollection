@@ -14,6 +14,7 @@
     self.itemNumber = [aDecoder decodeObjectForKey:@"ItemNumber"];
     self.brickImage = [aDecoder decodeObjectForKey:@"BrickImage"];
     self.missing = [aDecoder decodeBoolForKey:@"Missing"];
+    self.set = [aDecoder decodeObjectForKey:@"Set"];
     
     self = [super init];
     
@@ -24,6 +25,7 @@
     [aCoder encodeObject:self.itemNumber forKey:@"ItemNumber"];
     [aCoder encodeObject:self.brickImage forKey:@"BrickImage"];
     [aCoder encodeBool:self.missing forKey:@"Missing"];
+    [aCoder encodeObject:self.set forKey:@"Set"];
 }
 
 @end

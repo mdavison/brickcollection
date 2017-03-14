@@ -17,15 +17,28 @@
 @implementation SearchTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+    self.searchTextField.delegate = self;
+    self.brickSearchTextField.delegate = self;
     
-    [self.searchTextField becomeFirstResponder];
+    [super viewDidLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.error = nil;
     
     [super viewDidAppear:animated];
+    
+    if (![self.brickSearchTextField.text isEqualToString:@""]) {
+        [self.brickSearchTextField becomeFirstResponder];
+    } else {
+        [self.searchTextField becomeFirstResponder];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.searchActivityIndicator stopAnimating];
+    [self.searchButton setHidden:false];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,6 +48,9 @@
 
 #pragma mark - Table view data source
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NULL;
+}
 
 
 #pragma mark - ResultsTableViewControllerDelegate methods
@@ -44,12 +60,32 @@
 }
 
 -(void)resultsTableViewController:(ResultsTableViewController *)controller didFinishAddingSet:(Set *)set {
-    NSLog(@"set to add: %@", set.productName);
     [self.dataModel.sets addObject:set];
     
     [controller dismissViewControllerAnimated:true completion:nil];
-    NSLog(@"set added");
 }
+
+
+#pragma mark - TextField delegate methods
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if ([textField isEqual:self.searchTextField]) {
+        NSString *oldText = self.searchTextField.text;
+        NSString *newText = [oldText stringByReplacingCharactersInRange:range withString:string];
+        
+        [self.searchButton setEnabled:newText.length > 0];
+    } else {
+        NSString *oldText = self.brickSearchTextField.text;
+        NSString *newText = [oldText stringByReplacingCharactersInRange:range withString:string];
+        
+        [self.brickSearchButton setEnabled:newText.length > 0];
+    }
+    
+    return true;
+}
+
+
 
 
 #pragma mark - Navigation
@@ -64,6 +100,11 @@
         if (self.error) {
             controller.error = self.error;
         }
+    } else if ([segue.identifier isEqualToString:@"BrickResultsSegue"]) {
+        
+        BrickResultsTableViewController *controller = (BrickResultsTableViewController *)segue.destinationViewController;
+        
+        controller.foundBricks = sender;
     }
 }
 
@@ -72,10 +113,40 @@
 #pragma mark - Actions
 
 - (IBAction)search:(UIButton *)sender {
+    self.brickSearchTextField.text = @"";
+    [self.brickSearchButton setEnabled:false];
+    
+    [self.searchButton setHidden:true];
+    [self.searchActivityIndicator setHidden:false];
+    [self.searchActivityIndicator startAnimating];
+    
     [self performSearchRequest];
 }
 
+- (IBAction)brickSearch:(UIButton *)sender {
+    self.searchTextField.text = @"";
+    [self.searchButton setEnabled:false];
+    
+    NSMutableArray *foundBricks = [NSMutableArray array];
+    for (Set *set in self.dataModel.sets) {
+        for (Brick *brick in set.bricks) {
+            if ([brick.itemNumber isEqualToString:self.brickSearchTextField.text]) {
+                [foundBricks addObject:brick];
+            }
+        }
+    }
+    
+    [self performSegueWithIdentifier:@"BrickResultsSegue" sender:foundBricks];
+}
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self.searchTextField resignFirstResponder];
+    [self.brickSearchTextField resignFirstResponder];
+}
+
+// TODO: move this to DataModel?
 - (void)performSearchRequest {
+    // TODO: add network request indicator to status bar
     NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultConfiguration];
 
@@ -109,8 +180,6 @@
         });
 
     }] resume];
-    
-    // TODO: add loading icon
 }
 
 

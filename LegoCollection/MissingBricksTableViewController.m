@@ -11,6 +11,8 @@
 @interface MissingBricksTableViewController ()
 
 @property (nonatomic) NSMutableArray *missingBricks;
+@property (nonatomic) UIBarButtonItem *findButton;
+@property (nonatomic) UIBarButtonItem *cancelButton;
 
 @end
 
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // Edit button in nav
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -78,6 +80,11 @@
     }   
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Brick *brick = self.missingBricks[indexPath.row];
+    [self performSegueWithIdentifier:@"FindMissingBrickSegue" sender:brick];
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -93,15 +100,16 @@
 }
 */
 
-/*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"FindMissingBrickSegue"]) {
+        FindBrickResultsTableViewController *controller = segue.destinationViewController;
+        
+        controller.dataModel = self.dataModel;
+        controller.missingBrick = (Brick *)sender;
+    }
 }
-*/
 
 
 #pragma mark - Helper methods
@@ -124,9 +132,19 @@
 - (void)configureCell:(UITableViewCell *)cell withBrick:(Brick *)brick {
     UIImageView *brickImageView = [cell viewWithTag:3000];
     UILabel *brickLabel = [cell viewWithTag:3001];
+    UILabel *setLabel = [cell viewWithTag:3002];
+    UIImageView *checkmarkImageView = [cell viewWithTag:3003];
     
     brickImageView.image = brick.brickImage;
-    brickLabel.text = brick.itemNumber;
+    brickLabel.text = [@"Item No: " stringByAppendingString:brick.itemNumber];
+    setLabel.text = [@"Set: " stringByAppendingString:brick.set.productName];
+    
+    // Set the selected checkmark
+    if ([cell isSelected]) {
+        [checkmarkImageView setHidden:false];
+    } else {
+        [checkmarkImageView setHidden:true];
+    }
 }
 
 @end

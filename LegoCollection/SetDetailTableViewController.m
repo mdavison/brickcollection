@@ -67,9 +67,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell;
+    
     if ([indexPath section] == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCell" forIndexPath:indexPath];
-        
     } else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"BrickCell" forIndexPath:indexPath];
     }
@@ -96,6 +96,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Show the checkmark
+    [self toggleCheckmarkOn:true forIndexPath:indexPath];
+    
     // Show the toolbar
     if ([self.navigationController.toolbar isHidden]) {
         [self.navigationController setToolbarHidden:NO animated:YES];
@@ -114,6 +117,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Hide the checkmark
+    [self toggleCheckmarkOn:false forIndexPath:indexPath];
+    
     Brick *selectedBrick = self.set.bricks[indexPath.row];
     [self.selectedBricks removeObject:selectedBrick];
     
@@ -180,21 +186,31 @@
         productNameLabel.text = self.set.productName;
         productImageView.image = self.set.productImage;
     } else {
+        // Get the views
         UIImageView *brickImageView = [cell viewWithTag:2002];
         UILabel *itemNumberLabel = [cell viewWithTag:2003];
+        UIImageView *checkmarkImageView = [cell viewWithTag:2005];
+        UIImageView *missingImageView = [cell viewWithTag:2004];
         
         Brick *brick = self.set.bricks[indexPath.row];
         
         brickImageView.image = brick.brickImage;
         itemNumberLabel.text = brick.itemNumber;
         
-        UIImageView *missingImageView = [cell viewWithTag:2004];
+        // Set the selected checkmark
+        if ([cell isSelected]) {
+            [checkmarkImageView setHidden:false];
+        } else {
+            [checkmarkImageView setHidden:true];
+        }
         
+        // Set the missing icon
         if (brick.missing == true) {
             [missingImageView setHidden:false];
         } else {
             [missingImageView setHidden:true];
         }
+
     }
 }
 
@@ -261,8 +277,20 @@
             [self.missingButton setEnabled:true];
         }
     }
+}
+
+- (void)toggleCheckmarkOn:(bool)on forIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    UIImageView *checkmarkImage = [cell viewWithTag:2005];
     
-    
+    if (on) {
+        // Find out if the cell is selected
+        if ([cell isSelected]) {
+            [checkmarkImage setHidden:false];
+        }
+    } else {
+        [checkmarkImage setHidden:true];
+    }
 }
 
 

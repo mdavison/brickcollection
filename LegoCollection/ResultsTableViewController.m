@@ -177,6 +177,7 @@
         NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
         NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
         brick.brickImage = [UIImage imageWithData:brickImageData];
+        brick.set = self.set;
         
         // Add to bricks array
         [bricks addObject:brick];

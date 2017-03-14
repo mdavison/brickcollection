@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Set.h"
 
 @interface Brick : NSObject <NSCoding>
 
 @property (nonatomic) NSString *itemNumber;
 @property (nonatomic) UIImage *brickImage;
 @property (nonatomic) bool missing;
+@property (nonatomic) Set *set;
 
 @end

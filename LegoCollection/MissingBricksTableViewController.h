@@ -10,6 +10,7 @@
 #import "DataModel.h"
 #import "Set.h"
 #import "Brick.h"
+#import "FindBrickResultsTableViewController.h"
 
 @interface MissingBricksTableViewController : UITableViewController
 

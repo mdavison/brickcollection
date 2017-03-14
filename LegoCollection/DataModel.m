@@ -15,8 +15,6 @@
     
     [self loadSets];
     
-    NSLog(@"documents directory: %@", [self dataFilePath]);
-    
     return self;
 }
 
@@ -34,7 +32,6 @@
 }
 
 - (void)saveSets {
-    NSLog(@"saving sets: %@", self.sets);
     NSMutableData *data = [[NSMutableData alloc] init];
     NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
     
@@ -44,7 +41,6 @@
 }
 
 - (void)loadSets {
-    NSLog(@"Loading sets...");
     NSData *data = [[NSData alloc] initWithContentsOfURL:[self dataFilePath]];
     
     if (!self.sets) {
@@ -52,7 +48,6 @@
     }
     
     if (data) {
-        NSLog(@"Have data");
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
         
         self.sets = [unarchiver decodeObjectForKey:@"Sets"];
