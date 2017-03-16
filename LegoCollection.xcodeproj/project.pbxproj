@@ -17,6 +17,7 @@
 		90B8EE341E6FB370009BE58E /* MissingBricksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */; };
 		90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE391E7258CD009BE58E /* BrickResultsTableViewController.m */; };
 		90B8EE3D1E76C948009BE58E /* FindBrickResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */; };
+		90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */; };
 		90C60B581E622740006941C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B571E622740006941C0 /* main.m */; };
 		90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B5A1E622740006941C0 /* AppDelegate.m */; };
 		90C60B611E622740006941C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B5F1E622740006941C0 /* Main.storyboard */; };
@@ -45,6 +46,8 @@
 		90B8EE391E7258CD009BE58E /* BrickResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrickResultsTableViewController.m; sourceTree = "<group>"; };
 		90B8EE3B1E76C947009BE58E /* FindBrickResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindBrickResultsTableViewController.h; sourceTree = "<group>"; };
 		90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindBrickResultsTableViewController.m; sourceTree = "<group>"; };
+		90B8EE3E1E796E90009BE58E /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
+		90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */,
 				90B8EE3B1E76C947009BE58E /* FindBrickResultsTableViewController.h */,
 				90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */,
+				90B8EE3E1E796E90009BE58E /* InfoTableViewController.h */,
+				90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */,
 				90B8EE261E65C4F7009BE58E /* Set.h */,
 				90B8EE271E65C4F7009BE58E /* Set.m */,
 				90B8EE2F1E6B90DB009BE58E /* Brick.h */,
@@ -196,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */,
 				90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */,
 				90B8EE281E65C4F7009BE58E /* Set.m in Sources */,
 				90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */,

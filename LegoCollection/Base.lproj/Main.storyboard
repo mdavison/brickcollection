@@ -147,7 +147,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="1003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7B3-mK-FV7">
-                                            <rect key="frame" x="69" y="37" width="183" height="132"/>
+                                            <rect key="frame" x="68.5" y="37" width="183" height="132"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="183" id="ek0-8Q-Y98"/>
                                                 <constraint firstAttribute="height" constant="132" id="zhU-3u-tP4"/>
@@ -278,6 +278,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9r-hs-Kjj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="442.5" y="198.59154929577466"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="VyM-7L-DS9">
+            <objects>
+                <tableViewController id="quc-5F-b91" customClass="InfoTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="cuH-Hk-tgd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Credits" id="cah-dW-J8v">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="VXu-sd-Zc9">
+                                        <rect key="frame" x="0.0" y="56" width="320" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VXu-sd-Zc9" id="ydN-74-QvH">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icons courtesy of Icons8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1F-ul-bvl">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9I-Qh-9en">
+                                                    <rect key="frame" x="8" y="36" width="304" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="https://icons8.com"/>
+                                                    <connections>
+                                                        <action selector="openIcons8Link:" destination="quc-5F-b91" eventType="touchUpInside" id="CWu-Qj-uci"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="e1F-ul-bvl" secondAttribute="trailing" id="YVZ-LN-qLR"/>
+                                                <constraint firstItem="e1F-ul-bvl" firstAttribute="leading" secondItem="ydN-74-QvH" secondAttribute="leadingMargin" id="hOd-G8-nfh"/>
+                                                <constraint firstItem="e1F-ul-bvl" firstAttribute="top" secondItem="ydN-74-QvH" secondAttribute="topMargin" id="j5R-gX-nSH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ogr-ac-lhy">
+                                        <rect key="frame" x="0.0" y="135" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ogr-ac-lhy" id="Srq-pK-fax">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qmd-L4-Tfd">
+                                        <rect key="frame" x="0.0" y="179" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qmd-L4-Tfd" id="Y87-FT-hbx">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="quc-5F-b91" id="zgZ-Qz-7rk"/>
+                            <outlet property="delegate" destination="quc-5F-b91" id="ePR-2N-U3e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Info" id="ziR-f5-jSG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2rN-c0-CZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="442.5" y="936.97183098591552"/>
         </scene>
         <!--Find Brick Results Table View Controller-->
         <scene sceneID="xrB-rQ-Rxv">
@@ -418,11 +488,11 @@
             </objects>
             <point key="canvasLocation" x="1952" y="-134"/>
         </scene>
-        <!--Search-->
+        <!--Navigation Controller-->
         <scene sceneID="TCR-M3-h25">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Vla-Uk-c1f" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" id="YSs-TF-Wd9"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="YSs-TF-Wd9"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nhG-eI-O9Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -514,7 +584,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" tag="2001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exa-6B-RS5">
-                                            <rect key="frame" x="69" y="37" width="183" height="132"/>
+                                            <rect key="frame" x="68.5" y="37" width="183" height="132"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="132" id="hJB-ds-me7"/>
                                                 <constraint firstAttribute="width" constant="183" id="kGf-R2-2r2"/>
@@ -594,15 +664,17 @@
         <scene sceneID="7Qs-HC-Ow6">
             <objects>
                 <tabBarController id="xWq-ad-Sqv" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="zkL-Ae-98g">
+                    <tabBar key="tabBar" contentMode="scaleToFill" itemPositioning="centered" id="zkL-Ae-98g">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="selectedImageTintColor" red="0.81568627450980391" green="0.062745098039215685" blue="0.015686274509803921" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="Tji-Ui-DvR" kind="relationship" relationship="viewControllers" id="4MN-t3-54u"/>
                         <segue destination="Vla-Uk-c1f" kind="relationship" relationship="viewControllers" id="sOL-fM-h1Y"/>
                         <segue destination="mdq-gU-qkU" kind="relationship" relationship="viewControllers" id="fEp-qp-98z"/>
+                        <segue destination="3sr-06-8Pn" kind="relationship" relationship="viewControllers" id="0my-PW-eW1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u9q-Fx-he8" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -613,7 +685,7 @@
         <scene sceneID="Hxu-EY-rAB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tji-Ui-DvR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Sets" id="SCB-MJ-cmO"/>
+                    <tabBarItem key="tabBarItem" title="Sets" image="Brick" id="SCB-MJ-cmO"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ujG-89-u5Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -646,11 +718,11 @@
             </objects>
             <point key="canvasLocation" x="1952" y="-804"/>
         </scene>
-        <!--Missing Bricks-->
+        <!--Missing-->
         <scene sceneID="12T-iE-Naa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mdq-gU-qkU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Missing Bricks" id="DjC-sV-ZxP"/>
+                    <tabBarItem key="tabBarItem" title="Missing" image="Question" id="DjC-sV-ZxP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RrL-tt-dFs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -665,9 +737,31 @@
             </objects>
             <point key="canvasLocation" x="-255" y="198.59154929577466"/>
         </scene>
+        <!--Info-->
+        <scene sceneID="bnR-Uj-F9f">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3sr-06-8Pn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Info" image="Info" id="PpO-Wq-QXu"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NxC-1g-fRp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="quc-5F-b91" kind="relationship" relationship="rootViewController" id="RGd-3T-jP1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f9N-1O-KO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255" y="938"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Brick" width="25" height="25"/>
         <image name="Checkmark" width="25" height="25"/>
         <image name="Exclamation" width="25" height="25"/>
+        <image name="Info" width="25" height="25"/>
+        <image name="Question" width="25" height="25"/>
     </resources>
 </document>
