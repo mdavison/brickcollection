@@ -11,5 +11,6 @@
 @interface InfoTableViewController : UITableViewController
 
 - (IBAction)openIcons8Link:(UIButton *)sender;
+- (IBAction)openMakeAppIconLink:(UIButton *)sender;
 
 @end

@@ -12,6 +12,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self.productName = [aDecoder decodeObjectForKey:@"ProductName"];
+    self.productNumber = [aDecoder decodeObjectForKey:@"ProductNumber"];
     self.productImage = [aDecoder decodeObjectForKey:@"ProductImage"];
     self.bricks = [aDecoder decodeObjectForKey:@"Bricks"];
     
@@ -22,6 +23,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeObject:self.productName forKey:@"ProductName"];
+    [aCoder encodeObject:self.productNumber forKey:@"ProductNumber"];
     [aCoder encodeObject:self.productImage forKey:@"ProductImage"];
     [aCoder encodeObject:self.bricks forKey:@"Bricks"];
 }

@@ -11,6 +11,7 @@
 @interface Set : NSObject <NSCoding>
 
 @property (nonatomic) NSString *productName;
+@property (nonatomic) NSString *productNumber;
 @property (nonatomic) UIImage *productImage;
 @property (nonatomic) NSMutableArray *bricks;
 

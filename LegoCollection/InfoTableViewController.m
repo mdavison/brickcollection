@@ -37,7 +37,11 @@
 #pragma mark - Actions
 
 - (IBAction)openIcons8Link:(UIButton *)sender {
-    NSLog(@"open the icons 8 link: %@", sender.titleLabel.text);
+    NSURL *url = [NSURL URLWithString:sender.titleLabel.text];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+}
+
+- (IBAction)openMakeAppIconLink:(UIButton *)sender {
     NSURL *url = [NSURL URLWithString:sender.titleLabel.text];
     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }

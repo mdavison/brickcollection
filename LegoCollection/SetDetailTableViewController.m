@@ -183,7 +183,9 @@
         UILabel *productNameLabel = [cell viewWithTag:2000];
         UIImageView *productImageView = [cell viewWithTag:2001];
         
-        productNameLabel.text = self.set.productName;
+        productNameLabel.text = [[self.set.productName
+                                  stringByAppendingString:@": " ]
+                                 stringByAppendingString:self.set.productNumber];
         productImageView.image = self.set.productImage;
     } else {
         // Get the views

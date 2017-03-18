@@ -103,6 +103,9 @@
     
     UILabel *setNameLabel = [cell viewWithTag:1001];
     setNameLabel.text = set.productName;
+    
+    UILabel *setNumberLabel = [cell viewWithTag:1002];
+    setNumberLabel.text = set.productNumber;
 }
 
 @end

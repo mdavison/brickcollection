@@ -96,6 +96,7 @@
         ResultsTableViewController *controller = (ResultsTableViewController *)navController.topViewController;
         
         controller.delegate = self;
+        controller.dataModel = self.dataModel;
         controller.jsonData = sender;
         if (self.error) {
             controller.error = self.error;
