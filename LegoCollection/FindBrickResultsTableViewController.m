@@ -74,9 +74,9 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"Missing Brick:";
+        return [@"Item Number: " stringByAppendingString:self.missingBrick.itemNumber];
     } else {
-        return @"Found in Sets:";
+        return @"In Sets:";
     }
 }
 
@@ -143,10 +143,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UILabel *brickLabel = [cell viewWithTag:5000];
-        UIImageView *brickImageView = [cell viewWithTag:5001];
+        //UILabel *brickLabel = [cell viewWithTag:5000];
+        UIImageView *brickImageView = [cell viewWithTag:5000];
         
-        brickLabel.text = [@"Item No: " stringByAppendingString:self.missingBrick.itemNumber];
+        //brickLabel.text = [@"Item No: " stringByAppendingString:self.missingBrick.itemNumber];
         brickImageView.image = self.missingBrick.brickImage;
     } else {
         Set *set = self.foundSets[indexPath.row];

@@ -131,6 +131,19 @@
     [self toggleToolbarButtons];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        NSString *title = self.set.productName;
+        if (self.set.productNumber) {
+            title = [[title stringByAppendingString:@": "] stringByAppendingString:self.set.productNumber];
+        }
+        
+        return title;
+    }
+    
+    return nil;
+}
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -180,12 +193,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell withSection:(NSInteger)section indexPath:(NSIndexPath *)indexPath {
     if (section == 0) {
-        UILabel *productNameLabel = [cell viewWithTag:2000];
-        UIImageView *productImageView = [cell viewWithTag:2001];
-        
-        productNameLabel.text = [[self.set.productName
-                                  stringByAppendingString:@": " ]
-                                 stringByAppendingString:self.set.productNumber];
+        UIImageView *productImageView = [cell viewWithTag:2000];
         productImageView.image = self.set.productImage;
     } else {
         // Get the views
