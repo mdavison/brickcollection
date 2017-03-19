@@ -63,6 +63,18 @@
     [self.dataModel.sets addObject:set];
     
     [controller dismissViewControllerAnimated:true completion:nil];
+    
+    // Notify user that set has been added
+    NSString *message = [NSString stringWithFormat:@"The %@ set has been added to your collection.", set.productName];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Added!"
+                                                                   message:message
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {}];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
@@ -147,7 +159,9 @@
 
 // TODO: move this to DataModel?
 - (void)performSearchRequest {
-    // TODO: add network request indicator to status bar
+    // Add network request indicator to status bar
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:defaultConfiguration];
 
@@ -168,15 +182,18 @@
             jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
         }
         
-        if (error != NULL) {
-            NSLog(@"Error: %@", error.localizedDescription);
-        }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+            if (error != NULL) {
+                NSLog(@"Error: %@", error.localizedDescription);
+            }
+            
             // When json is loaded, perform segue with data
             if (error) {
                 self.error = error;
             }
+            
             [self performSegueWithIdentifier:@"ResultsSegue" sender:jsonData];
         });
 

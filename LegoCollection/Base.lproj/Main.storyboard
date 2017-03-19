@@ -153,9 +153,14 @@
                                                 <constraint firstAttribute="height" constant="132" id="zhU-3u-tP4"/>
                                             </constraints>
                                         </imageView>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-S6-UJJ">
+                                            <rect key="frame" x="150" y="78.5" width="20" height="20"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="cAq-TF-oHF" firstAttribute="trailing" secondItem="D3O-oW-aDE" secondAttribute="trailingMargin" id="LK9-HM-6Nf"/>
+                                        <constraint firstItem="lXP-S6-UJJ" firstAttribute="centerX" secondItem="D3O-oW-aDE" secondAttribute="centerX" id="PfB-oe-ifu"/>
+                                        <constraint firstItem="lXP-S6-UJJ" firstAttribute="centerY" secondItem="D3O-oW-aDE" secondAttribute="centerY" id="UPG-68-cM6"/>
                                         <constraint firstItem="cAq-TF-oHF" firstAttribute="leading" secondItem="D3O-oW-aDE" secondAttribute="leadingMargin" id="ayE-Uk-iD4"/>
                                         <constraint firstItem="cAq-TF-oHF" firstAttribute="top" secondItem="D3O-oW-aDE" secondAttribute="topMargin" id="ldA-xb-nhr"/>
                                         <constraint firstItem="7B3-mK-FV7" firstAttribute="top" secondItem="cAq-TF-oHF" secondAttribute="bottom" constant="8" symbolic="YES" id="nYQ-AF-v7S"/>

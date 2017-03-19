@@ -166,44 +166,53 @@
     }
 }
 
+
+// TODO: refactor this to data model?
 -(void)parseJSONData {
-    // Create new Set
-    self.set = [[Set alloc] init];
+    // Use a background thread
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     
-    if (!self.error) {
-        // Set properties
-        self.set.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
-        self.set.productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
+    dispatch_async(queue, ^{
+        // Create new Set
+        self.set = [[Set alloc] init];
         
-        NSString *baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
-        
-        NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
-        NSURL *productImageURL = [NSURL URLWithString:productImageString];
-        NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
-        self.set.productImage = [UIImage imageWithData:productImageData];
-        
-        NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
-        NSMutableArray *bricks = [NSMutableArray array];
-        for (NSDictionary *brickDict in bricksJSON) {
-            // Create new brick
-            Brick *brick = [[Brick alloc] init];
-            
+        if (!self.error) {
             // Set properties
-            brick.itemNumber = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
+            self.set.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
+            self.set.productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
             
-            NSString *brickImage = [brickDict objectForKey:@"Asset"];
-            NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
-            NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
-            brick.brickImage = [UIImage imageWithData:brickImageData];
-            brick.set = self.set;
+            NSString *baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
             
-            // Add to bricks array
-            [bricks addObject:brick];
+            NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
+            NSURL *productImageURL = [NSURL URLWithString:productImageString];
+            NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
+            self.set.productImage = [UIImage imageWithData:productImageData];
+            
+            NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
+            NSMutableArray *bricks = [NSMutableArray array];
+            for (NSDictionary *brickDict in bricksJSON) {
+                // Create new brick
+                Brick *brick = [[Brick alloc] init];
+                
+                // Set properties
+                brick.itemNumber = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
+                
+                NSString *brickImage = [brickDict objectForKey:@"Asset"];
+                NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
+                NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
+                brick.brickImage = [UIImage imageWithData:brickImageData];
+                brick.set = self.set;
+                
+                // Add to bricks array
+                [bricks addObject:brick];
+            }
+            self.set.bricks = bricks;
         }
-        self.set.bricks = bricks;
         
-        [self.tableView reloadData];
-    }
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    });
 }
 
 - (bool)setExists {
