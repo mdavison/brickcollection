@@ -28,6 +28,15 @@
     
     [super viewDidAppear:animated];
     
+    // Add a toolbar to the keyboard with a Cancel button
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    UIBarButtonItem *toolbarCancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                   style:UIBarButtonItemStylePlain target:self
+                                                                  action:@selector(cancelKeyboard)];
+    [toolbar setItems:[NSArray arrayWithObjects:toolbarCancelButton, nil]];
+    self.searchTextField.inputAccessoryView = toolbar;
+    self.brickSearchTextField.inputAccessoryView = toolbar;
+    
     if (![self.brickSearchTextField.text isEqualToString:@""]) {
         [self.brickSearchTextField becomeFirstResponder];
     } else {
@@ -100,6 +109,7 @@
 
 
 
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -153,6 +163,11 @@
 }
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self.searchTextField resignFirstResponder];
+    [self.brickSearchTextField resignFirstResponder];
+}
+
+- (void)cancelKeyboard {
     [self.searchTextField resignFirstResponder];
     [self.brickSearchTextField resignFirstResponder];
 }
