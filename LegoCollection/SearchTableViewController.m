@@ -69,9 +69,13 @@
 }
 
 -(void)resultsTableViewController:(ResultsTableViewController *)controller didFinishAddingSet:(Set *)set {
+    NSLog(@"Added set");
     [self.dataModel.sets addObject:set];
     
-    [controller dismissViewControllerAnimated:true completion:nil];
+    // There used to be a navigation controller; then I deleted it but calling
+    // dismissViewController on the controller does not work and I still have
+    // to call popViewController on the now non-existent navigation controller...
+    [controller.navigationController popViewControllerAnimated:true];
     
     // Notify user that set has been added
     NSString *message = [NSString stringWithFormat:@"The %@ set has been added to your collection.", set.productName];
@@ -114,8 +118,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ResultsSegue"]) {
-        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
-        ResultsTableViewController *controller = (ResultsTableViewController *)navController.topViewController;
+        //UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        ResultsTableViewController *controller = (ResultsTableViewController *)segue.destinationViewController;
         
         controller.delegate = self;
         controller.dataModel = self.dataModel;
@@ -172,7 +176,6 @@
     [self.brickSearchTextField resignFirstResponder];
 }
 
-// TODO: move this to DataModel?
 - (void)performSearchRequest {
     // Add network request indicator to status bar
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

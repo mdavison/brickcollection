@@ -24,11 +24,9 @@
     
     self.title = @"Results";
     
-    self.haveSet = [self setExists];
+    self.haveSet = [self setExistsInCollection];
     
-    if (self.haveSet) {
-        [self.navigationItem.rightBarButtonItem setEnabled:false];
-    } else {
+    if (!self.haveSet) {
         [self parseJSONData];
     }
 }
@@ -140,9 +138,11 @@
         
         UILabel *productNameLabel = [cell viewWithTag:1000];
         UIImageView *productImageView = [cell viewWithTag:1003];
+        UIActivityIndicatorView *activityIndicator = [cell viewWithTag:1004];
         
         if (self.haveSet) {
             productNameLabel.text = [NSString localizedStringWithFormat:@"You already have that set 😀"];
+            [activityIndicator stopAnimating];
         } else {
             productNameLabel.text = self.set.productName;
             productImageView.image = self.set.productImage;
@@ -167,7 +167,6 @@
 }
 
 
-// TODO: refactor this to data model?
 -(void)parseJSONData {
     // Use a background thread
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
@@ -177,6 +176,8 @@
         self.set = [[Set alloc] init];
         
         if (!self.error) {
+            [self.navigationItem.rightBarButtonItem setEnabled:true];
+            
             // Set properties
             self.set.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
             self.set.productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
@@ -215,7 +216,7 @@
     });
 }
 
-- (bool)setExists {
+- (bool)setExistsInCollection {
     NSString *searchResultProductNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
 
     for (Set *set in self.dataModel.sets) {

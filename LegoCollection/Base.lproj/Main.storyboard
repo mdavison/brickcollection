@@ -111,8 +111,8 @@
                         <outlet property="searchActivityIndicator" destination="u8E-Tk-hKN" id="Irk-4L-vk0"/>
                         <outlet property="searchButton" destination="Xuu-2q-BLs" id="7bo-Cy-Ag7"/>
                         <outlet property="searchTextField" destination="i0g-j0-Af1" id="p0u-lQ-vK4"/>
-                        <segue destination="LOJ-Kj-dHP" kind="presentation" identifier="ResultsSegue" id="lr3-gO-sNn"/>
                         <segue destination="CPE-hf-cBk" kind="show" identifier="BrickResultsSegue" id="HsD-Kf-caF"/>
+                        <segue destination="vhE-bK-KjF" kind="show" identifier="ResultsSegue" id="ERS-HQ-W7R"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTt-bj-txg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,7 +153,7 @@
                                                 <constraint firstAttribute="height" constant="132" id="zhU-3u-tP4"/>
                                             </constraints>
                                         </imageView>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-S6-UJJ">
+                                        <activityIndicatorView opaque="NO" tag="1004" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-S6-UJJ">
                                             <rect key="frame" x="150" y="78.5" width="20" height="20"/>
                                         </activityIndicatorView>
                                     </subviews>
@@ -205,12 +205,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Results" id="PfY-qc-4iD">
-                        <barButtonItem key="leftBarButtonItem" title="Search" id="GNn-x0-myA">
-                            <connections>
-                                <action selector="cancel:" destination="vhE-bK-KjF" id="lLK-aK-Tpy"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VJs-Y3-xeP">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="VJs-Y3-xeP">
                             <connections>
                                 <action selector="addToSets:" destination="vhE-bK-KjF" id="aZx-CJ-3MR"/>
                             </connections>
@@ -219,7 +214,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0O-iA-4Wx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2686.875" y="-805.9859154929577"/>
+            <point key="canvasLocation" x="1952" y="-806"/>
         </scene>
         <!--Missing Bricks-->
         <scene sceneID="pGW-ts-69z">
@@ -712,24 +707,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="be9-LU-9bv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-255" y="-1313.0281690140846"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="pwx-PD-emp">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LOJ-Kj-dHP" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sVy-Ro-eT1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vhE-bK-KjF" kind="relationship" relationship="rootViewController" id="lhQ-nk-xJs"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Yuy-Lg-lBd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1952" y="-804"/>
         </scene>
         <!--Missing-->
         <scene sceneID="12T-iE-Naa">
