@@ -116,7 +116,8 @@
     }
     
     // Add to selected sets array
-    Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
+    //Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
+    Brick *selectedBrick = self.orderedBricks[indexPath.row];
     [self.selectedBricks addObject:selectedBrick];
     
     [self toggleToolbarButtons];
@@ -126,7 +127,8 @@
     // Hide the checkmark
     [self toggleCheckmarkOn:false forIndexPath:indexPath];
     
-    Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
+    //Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
+    Brick *selectedBrick = self.orderedBricks[indexPath.row];
     [self.selectedBricks removeObject:selectedBrick];
     
     // If no more rows are selected, hide the toolbar
@@ -239,8 +241,11 @@
     for (Brick *brick in self.selectedBricks) {
         if (brick.missing == true) {
             missing = true;
+            NSLog(@"the brick is missing");
         } else {
             notMissing = true;
+            NSLog(@"The brick is NOT missing");
+            NSLog(@"brick info: %@", brick.itemNumber);
         }
     }
     
