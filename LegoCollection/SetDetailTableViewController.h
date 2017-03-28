@@ -13,5 +13,6 @@
 @interface SetDetailTableViewController : UITableViewController
 
 @property (nonatomic) Set *set;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

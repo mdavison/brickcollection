@@ -20,6 +20,15 @@
     self.searchTextField.delegate = self;
     self.brickSearchTextField.delegate = self;
     
+    // Add a toolbar to the keyboard with a Cancel button
+    UIToolbar *toolbar = [[UIToolbar alloc] init];
+    UIBarButtonItem *toolbarCancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                            style:UIBarButtonItemStylePlain target:self
+                                                                           action:@selector(cancelKeyboard)];
+    [toolbar setItems:[NSArray arrayWithObjects:toolbarCancelButton, nil]];
+    self.searchTextField.inputAccessoryView = toolbar;
+    self.brickSearchTextField.inputAccessoryView = toolbar;
+    
     [super viewDidLoad];
 }
 
@@ -27,15 +36,6 @@
     self.error = nil;
     
     [super viewDidAppear:animated];
-    
-    // Add a toolbar to the keyboard with a Cancel button
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    UIBarButtonItem *toolbarCancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                   style:UIBarButtonItemStylePlain target:self
-                                                                  action:@selector(cancelKeyboard)];
-    [toolbar setItems:[NSArray arrayWithObjects:toolbarCancelButton, nil]];
-    self.searchTextField.inputAccessoryView = toolbar;
-    self.brickSearchTextField.inputAccessoryView = toolbar;
     
     if (![self.brickSearchTextField.text isEqualToString:@""]) {
         [self.brickSearchTextField becomeFirstResponder];
@@ -69,12 +69,9 @@
 }
 
 -(void)resultsTableViewController:(ResultsTableViewController *)controller didFinishAddingSet:(Set *)set {
-    NSLog(@"Added set");
-    [self.dataModel.sets addObject:set];
-    
     // There used to be a navigation controller; then I deleted it but calling
     // dismissViewController on the controller does not work and I still have
-    // to call popViewController on the now non-existent navigation controller...
+    // to call popViewController on the now non-existent navigation controller... ¯\_(ツ)_/¯
     [controller.navigationController popViewControllerAnimated:true];
     
     // Notify user that set has been added
@@ -118,11 +115,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"ResultsSegue"]) {
-        //UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         ResultsTableViewController *controller = (ResultsTableViewController *)segue.destinationViewController;
         
         controller.delegate = self;
-        controller.dataModel = self.dataModel;
+        controller.managedObjectContext = self.managedObjectContext;
         controller.jsonData = sender;
         if (self.error) {
             controller.error = self.error;
@@ -155,7 +151,9 @@
     [self.searchButton setEnabled:false];
     
     NSMutableArray *foundBricks = [NSMutableArray array];
-    for (Set *set in self.dataModel.sets) {
+    
+    NSArray *allSets = [Set getAllWithManagedObjectContext:self.managedObjectContext];
+    for (Set *set in allSets) {
         for (Brick *brick in set.bricks) {
             if ([brick.itemNumber isEqualToString:self.brickSearchTextField.text]) {
                 [foundBricks addObject:brick];

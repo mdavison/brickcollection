@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
+#import <CoreData/CoreData.h>
+#import "CoreDataStack.h"
 #import "Set.h"
 #import "SetDetailTableViewController.h"
 
-@interface SetTableViewController : UITableViewController
+@interface SetTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
-@property (nonatomic) DataModel *dataModel;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

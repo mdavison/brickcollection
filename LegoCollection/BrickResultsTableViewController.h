@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Brick.h"
+#import "Set+CoreDataProperties.h"
 
 @interface BrickResultsTableViewController : UITableViewController
 

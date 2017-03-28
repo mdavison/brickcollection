@@ -65,40 +65,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 177.0;
@@ -106,16 +72,6 @@
         return 112.0;
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 
 #pragma mark - Actions
@@ -141,11 +97,11 @@
         UIActivityIndicatorView *activityIndicator = [cell viewWithTag:1004];
         
         if (self.haveSet) {
-            productNameLabel.text = [NSString localizedStringWithFormat:@"You already have that set 😀"];
+            productNameLabel.text = [NSString localizedStringWithFormat:@"\nYou already have that set 😀"];
             [activityIndicator stopAnimating];
         } else {
             productNameLabel.text = self.set.productName;
-            productImageView.image = self.set.productImage;
+            productImageView.image = [UIImage imageWithData:self.set.productImage];
             
             if (self.error) {
                 if (self.error.code == 3840) {
@@ -156,12 +112,12 @@
             }
         }
     } else {
-        Brick *brick = self.set.bricks[indexPath.row];
+        Brick *brick = [self.set.bricks allObjects][indexPath.row];
 
         UIImageView *brickImageView = [cell viewWithTag:1001];
         UILabel *itemNumberLabel = [cell viewWithTag:1002];
         
-        brickImageView.image = brick.brickImage;
+        brickImageView.image = [UIImage imageWithData:brick.brickImage];
         itemNumberLabel.text = brick.itemNumber;
     }
 }
@@ -173,7 +129,7 @@
     
     dispatch_async(queue, ^{
         // Create new Set
-        self.set = [[Set alloc] init];
+        self.set = [[Set alloc] initWithContext:self.managedObjectContext];
         
         if (!self.error) {
             [self.navigationItem.rightBarButtonItem setEnabled:true];
@@ -187,13 +143,13 @@
             NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
             NSURL *productImageURL = [NSURL URLWithString:productImageString];
             NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
-            self.set.productImage = [UIImage imageWithData:productImageData];
+            self.set.productImage = productImageData;
             
             NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
             NSMutableArray *bricks = [NSMutableArray array];
             for (NSDictionary *brickDict in bricksJSON) {
                 // Create new brick
-                Brick *brick = [[Brick alloc] init];
+                Brick *brick = [[Brick alloc] initWithContext:self.managedObjectContext];
                 
                 // Set properties
                 brick.itemNumber = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
@@ -201,13 +157,14 @@
                 NSString *brickImage = [brickDict objectForKey:@"Asset"];
                 NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
                 NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
-                brick.brickImage = [UIImage imageWithData:brickImageData];
+                brick.brickImage = brickImageData;
                 brick.set = self.set;
                 
                 // Add to bricks array
                 [bricks addObject:brick];
             }
-            self.set.bricks = bricks;
+            
+            self.set.bricks = [NSSet setWithArray:bricks];
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -219,7 +176,8 @@
 - (bool)setExistsInCollection {
     NSString *searchResultProductNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
 
-    for (Set *set in self.dataModel.sets) {
+    NSArray *allSets = [Set getAllWithManagedObjectContext:self.managedObjectContext];
+    for (Set *set in allSets) {
         if ([set.productNumber isEqualToString:searchResultProductNumber]) {
             return true;
         }

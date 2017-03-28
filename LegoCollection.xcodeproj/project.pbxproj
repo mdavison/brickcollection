@@ -10,14 +10,17 @@
 		90B8EE1F1E629252009BE58E /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE1E1E629252009BE58E /* SearchTableViewController.m */; };
 		90B8EE221E6389D0009BE58E /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE211E6389D0009BE58E /* ResultsTableViewController.m */; };
 		90B8EE251E65C2E2009BE58E /* SetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE241E65C2E2009BE58E /* SetTableViewController.m */; };
-		90B8EE281E65C4F7009BE58E /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE271E65C4F7009BE58E /* Set.m */; };
-		90B8EE2B1E671741009BE58E /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE2A1E671741009BE58E /* DataModel.m */; };
 		90B8EE2E1E6B74D0009BE58E /* SetDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE2D1E6B74D0009BE58E /* SetDetailTableViewController.m */; };
-		90B8EE311E6B90DB009BE58E /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE301E6B90DB009BE58E /* Brick.m */; };
 		90B8EE341E6FB370009BE58E /* MissingBricksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */; };
 		90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE391E7258CD009BE58E /* BrickResultsTableViewController.m */; };
 		90B8EE3D1E76C948009BE58E /* FindBrickResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */; };
 		90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */; };
+		90B8EE431E815C3F009BE58E /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE421E815C3F009BE58E /* CoreDataStack.m */; };
+		90B8EE481E83F04F009BE58E /* LegoCollection.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE461E83F04F009BE58E /* LegoCollection.xcdatamodeld */; };
+		90B8EE661E83F842009BE58E /* Brick.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE5F1E83F842009BE58E /* Brick.m */; };
+		90B8EE671E83F842009BE58E /* Brick+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE611E83F842009BE58E /* Brick+CoreDataProperties.m */; };
+		90B8EE681E83F842009BE58E /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE631E83F842009BE58E /* Set.m */; };
+		90B8EE691E83F842009BE58E /* Set+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */; };
 		90C60B581E622740006941C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B571E622740006941C0 /* main.m */; };
 		90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B5A1E622740006941C0 /* AppDelegate.m */; };
 		90C60B611E622740006941C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B5F1E622740006941C0 /* Main.storyboard */; };
@@ -32,14 +35,8 @@
 		90B8EE211E6389D0009BE58E /* ResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsTableViewController.m; sourceTree = "<group>"; };
 		90B8EE231E65C2E2009BE58E /* SetTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTableViewController.h; sourceTree = "<group>"; };
 		90B8EE241E65C2E2009BE58E /* SetTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTableViewController.m; sourceTree = "<group>"; };
-		90B8EE261E65C4F7009BE58E /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
-		90B8EE271E65C4F7009BE58E /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
-		90B8EE291E671741009BE58E /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
-		90B8EE2A1E671741009BE58E /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		90B8EE2C1E6B74D0009BE58E /* SetDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetDetailTableViewController.h; sourceTree = "<group>"; };
 		90B8EE2D1E6B74D0009BE58E /* SetDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetDetailTableViewController.m; sourceTree = "<group>"; };
-		90B8EE2F1E6B90DB009BE58E /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
-		90B8EE301E6B90DB009BE58E /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
 		90B8EE321E6FB370009BE58E /* MissingBricksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissingBricksTableViewController.h; sourceTree = "<group>"; };
 		90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissingBricksTableViewController.m; sourceTree = "<group>"; };
 		90B8EE381E7258CD009BE58E /* BrickResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrickResultsTableViewController.h; sourceTree = "<group>"; };
@@ -48,6 +45,17 @@
 		90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindBrickResultsTableViewController.m; sourceTree = "<group>"; };
 		90B8EE3E1E796E90009BE58E /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
 		90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
+		90B8EE411E815C3F009BE58E /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		90B8EE421E815C3F009BE58E /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LegoCollection.xcdatamodel; sourceTree = "<group>"; };
+		90B8EE5E1E83F842009BE58E /* Brick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brick.h; sourceTree = "<group>"; };
+		90B8EE5F1E83F842009BE58E /* Brick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brick.m; sourceTree = "<group>"; };
+		90B8EE601E83F842009BE58E /* Brick+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Brick+CoreDataProperties.h"; sourceTree = "<group>"; };
+		90B8EE611E83F842009BE58E /* Brick+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Brick+CoreDataProperties.m"; sourceTree = "<group>"; };
+		90B8EE621E83F842009BE58E /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
+		90B8EE631E83F842009BE58E /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		90B8EE641E83F842009BE58E /* Set+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Set+CoreDataProperties.h"; sourceTree = "<group>"; };
+		90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Set+CoreDataProperties.m"; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -69,6 +77,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90B8EE441E82A88A009BE58E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				90B8EE641E83F842009BE58E /* Set+CoreDataProperties.h */,
+				90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */,
+				90B8EE621E83F842009BE58E /* Set.h */,
+				90B8EE631E83F842009BE58E /* Set.m */,
+				90B8EE601E83F842009BE58E /* Brick+CoreDataProperties.h */,
+				90B8EE611E83F842009BE58E /* Brick+CoreDataProperties.m */,
+				90B8EE5E1E83F842009BE58E /* Brick.h */,
+				90B8EE5F1E83F842009BE58E /* Brick.m */,
+				90B8EE411E815C3F009BE58E /* CoreDataStack.h */,
+				90B8EE421E815C3F009BE58E /* CoreDataStack.m */,
+				90B8EE461E83F04F009BE58E /* LegoCollection.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		90B8EE451E82A8A7009BE58E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				90B8EE231E65C2E2009BE58E /* SetTableViewController.h */,
+				90B8EE241E65C2E2009BE58E /* SetTableViewController.m */,
+				90B8EE2C1E6B74D0009BE58E /* SetDetailTableViewController.h */,
+				90B8EE2D1E6B74D0009BE58E /* SetDetailTableViewController.m */,
+				90B8EE1D1E629252009BE58E /* SearchTableViewController.h */,
+				90B8EE1E1E629252009BE58E /* SearchTableViewController.m */,
+				90B8EE201E6389D0009BE58E /* ResultsTableViewController.h */,
+				90B8EE211E6389D0009BE58E /* ResultsTableViewController.m */,
+				90B8EE381E7258CD009BE58E /* BrickResultsTableViewController.h */,
+				90B8EE391E7258CD009BE58E /* BrickResultsTableViewController.m */,
+				90B8EE321E6FB370009BE58E /* MissingBricksTableViewController.h */,
+				90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */,
+				90B8EE3B1E76C947009BE58E /* FindBrickResultsTableViewController.h */,
+				90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */,
+				90B8EE3E1E796E90009BE58E /* InfoTableViewController.h */,
+				90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		90C60B4A1E622740006941C0 = {
 			isa = PBXGroup;
 			children = (
@@ -90,28 +139,8 @@
 			children = (
 				90C60B591E622740006941C0 /* AppDelegate.h */,
 				90C60B5A1E622740006941C0 /* AppDelegate.m */,
-				90B8EE231E65C2E2009BE58E /* SetTableViewController.h */,
-				90B8EE241E65C2E2009BE58E /* SetTableViewController.m */,
-				90B8EE2C1E6B74D0009BE58E /* SetDetailTableViewController.h */,
-				90B8EE2D1E6B74D0009BE58E /* SetDetailTableViewController.m */,
-				90B8EE1D1E629252009BE58E /* SearchTableViewController.h */,
-				90B8EE1E1E629252009BE58E /* SearchTableViewController.m */,
-				90B8EE201E6389D0009BE58E /* ResultsTableViewController.h */,
-				90B8EE211E6389D0009BE58E /* ResultsTableViewController.m */,
-				90B8EE381E7258CD009BE58E /* BrickResultsTableViewController.h */,
-				90B8EE391E7258CD009BE58E /* BrickResultsTableViewController.m */,
-				90B8EE321E6FB370009BE58E /* MissingBricksTableViewController.h */,
-				90B8EE331E6FB370009BE58E /* MissingBricksTableViewController.m */,
-				90B8EE3B1E76C947009BE58E /* FindBrickResultsTableViewController.h */,
-				90B8EE3C1E76C947009BE58E /* FindBrickResultsTableViewController.m */,
-				90B8EE3E1E796E90009BE58E /* InfoTableViewController.h */,
-				90B8EE3F1E796E90009BE58E /* InfoTableViewController.m */,
-				90B8EE261E65C4F7009BE58E /* Set.h */,
-				90B8EE271E65C4F7009BE58E /* Set.m */,
-				90B8EE2F1E6B90DB009BE58E /* Brick.h */,
-				90B8EE301E6B90DB009BE58E /* Brick.m */,
-				90B8EE291E671741009BE58E /* DataModel.h */,
-				90B8EE2A1E671741009BE58E /* DataModel.m */,
+				90B8EE451E82A8A7009BE58E /* Controllers */,
+				90B8EE441E82A88A009BE58E /* Models */,
 				90C60B5F1E622740006941C0 /* Main.storyboard */,
 				90C60B621E622740006941C0 /* Assets.xcassets */,
 				90C60B641E622740006941C0 /* LaunchScreen.storyboard */,
@@ -161,6 +190,7 @@
 					90C60B521E622740006941C0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2TEP68NZCD;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -203,17 +233,20 @@
 			files = (
 				90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */,
 				90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */,
-				90B8EE281E65C4F7009BE58E /* Set.m in Sources */,
 				90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */,
 				90C60B581E622740006941C0 /* main.m in Sources */,
 				90B8EE1F1E629252009BE58E /* SearchTableViewController.m in Sources */,
 				90B8EE3D1E76C948009BE58E /* FindBrickResultsTableViewController.m in Sources */,
-				90B8EE2B1E671741009BE58E /* DataModel.m in Sources */,
+				90B8EE691E83F842009BE58E /* Set+CoreDataProperties.m in Sources */,
 				90B8EE251E65C2E2009BE58E /* SetTableViewController.m in Sources */,
-				90B8EE311E6B90DB009BE58E /* Brick.m in Sources */,
+				90B8EE671E83F842009BE58E /* Brick+CoreDataProperties.m in Sources */,
+				90B8EE431E815C3F009BE58E /* CoreDataStack.m in Sources */,
 				90B8EE221E6389D0009BE58E /* ResultsTableViewController.m in Sources */,
 				90B8EE341E6FB370009BE58E /* MissingBricksTableViewController.m in Sources */,
 				90B8EE2E1E6B74D0009BE58E /* SetDetailTableViewController.m in Sources */,
+				90B8EE481E83F04F009BE58E /* LegoCollection.xcdatamodeld in Sources */,
+				90B8EE681E83F842009BE58E /* Set.m in Sources */,
+				90B8EE661E83F842009BE58E /* Brick.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,11 +366,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
 				INFOPLIST_FILE = LegoCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegoCollection/LegoCollection-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -345,11 +382,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
 				INFOPLIST_FILE = LegoCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LegoCollection/LegoCollection-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -375,6 +415,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		90B8EE461E83F04F009BE58E /* LegoCollection.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */,
+			);
+			currentVersion = 90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */;
+			path = LegoCollection.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 90C60B4B1E622740006941C0 /* Project object */;
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Brick" representedClassName="Brick" syncable="YES">
+        <attribute name="brickImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="itemNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missing" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="set" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="bricks" inverseEntity="Set" syncable="YES"/>
+    </entity>
+    <entity name="Set" representedClassName="Set" syncable="YES">
+        <attribute name="productImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bricks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Brick" inverseName="set" inverseEntity="Brick" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Set" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Brick" positionX="-54" positionY="183" width="128" height="103"/>
+    </elements>
+</model>

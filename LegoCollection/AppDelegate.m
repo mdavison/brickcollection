@@ -14,25 +14,25 @@
 
 @implementation AppDelegate
 
-DataModel *dataModel;
+CoreDataStack *coreDataStack;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    dataModel = [[DataModel alloc] init];
+    coreDataStack = [[CoreDataStack alloc] init];
     
     UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
     UINavigationController *navController = (UINavigationController *)tabBarController.viewControllers[0];
     SetTableViewController *setController = (SetTableViewController *)navController.topViewController;
-    setController.dataModel = dataModel;
+    setController.managedObjectContext = coreDataStack.managedObjectContext;
     
     navController = (UINavigationController *)tabBarController.viewControllers[1];
     SearchTableViewController *searchController = (SearchTableViewController *)navController.topViewController;
-    searchController.dataModel = dataModel;
+    searchController.managedObjectContext = coreDataStack.managedObjectContext;
     
     navController = (UINavigationController *)tabBarController.viewControllers[2];
     MissingBricksTableViewController *missingBricksController = (MissingBricksTableViewController *)navController.topViewController;
-    missingBricksController.dataModel = dataModel;
+    missingBricksController.managedObjectContext = coreDataStack.managedObjectContext;
     
     return YES;
 }
@@ -48,7 +48,7 @@ DataModel *dataModel;
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
-    [self saveData];
+    [coreDataStack saveContext];
 }
 
 
@@ -65,14 +65,7 @@ DataModel *dataModel;
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     
-    [self saveData];
-}
-
-
-#pragma mark - Helper methods
-
-- (void)saveData {
-    [dataModel saveSets];
+    [coreDataStack saveContext];
 }
 
 

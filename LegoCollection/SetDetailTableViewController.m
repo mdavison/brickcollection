@@ -13,6 +13,7 @@
 @property (nonatomic) NSMutableArray *selectedBricks;
 @property (nonatomic) UIBarButtonItem *missingButton;
 @property (nonatomic) UIBarButtonItem *foundButton;
+@property (nonatomic) NSArray *orderedBricks;
 
 @end
 
@@ -36,6 +37,11 @@
                                                                    action:@selector(removeFromMissingBricks)];
     
     [self addToolbar];
+    
+    // Sort the bricks
+    NSSortDescriptor *missingBrickSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"missing" ascending:NO];
+    NSSortDescriptor *brickSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"itemNumber" ascending:YES];
+    self.orderedBricks = [[NSArray alloc] initWithArray:[self.set.bricks sortedArrayUsingDescriptors:@[missingBrickSortDescriptor, brickSortDescriptor]]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -60,7 +66,7 @@
     if (section == 0) {
         return 1;
     } else {
-        return [self.set.bricks count];
+        return [self.orderedBricks count];
     }
 }
 
@@ -110,7 +116,7 @@
     }
     
     // Add to selected sets array
-    Brick *selectedBrick = self.set.bricks[indexPath.row];
+    Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
     [self.selectedBricks addObject:selectedBrick];
     
     [self toggleToolbarButtons];
@@ -120,7 +126,7 @@
     // Hide the checkmark
     [self toggleCheckmarkOn:false forIndexPath:indexPath];
     
-    Brick *selectedBrick = self.set.bricks[indexPath.row];
+    Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
     [self.selectedBricks removeObject:selectedBrick];
     
     // If no more rows are selected, hide the toolbar
@@ -144,41 +150,6 @@
     return nil;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 /*
 #pragma mark - Navigation
 
@@ -194,7 +165,7 @@
 - (void)configureCell:(UITableViewCell *)cell withSection:(NSInteger)section indexPath:(NSIndexPath *)indexPath {
     if (section == 0) {
         UIImageView *productImageView = [cell viewWithTag:2000];
-        productImageView.image = self.set.productImage;
+        productImageView.image = [UIImage imageWithData:self.set.productImage];
     } else {
         // Get the views
         UIImageView *brickImageView = [cell viewWithTag:2002];
@@ -202,9 +173,10 @@
         UIImageView *checkmarkImageView = [cell viewWithTag:2005];
         UIImageView *missingImageView = [cell viewWithTag:2004];
         
-        Brick *brick = self.set.bricks[indexPath.row];
+        //Brick *brick = [self.set.bricks allObjects][indexPath.row];
+        Brick *brick = self.orderedBricks[indexPath.row];
         
-        brickImageView.image = brick.brickImage;
+        brickImageView.image = [UIImage imageWithData:brick.brickImage];
         itemNumberLabel.text = brick.itemNumber;
         
         // Set the selected checkmark
@@ -302,7 +274,6 @@
         [checkmarkImage setHidden:true];
     }
 }
-
 
 
 @end

@@ -1,19 +1,22 @@
 //
-//  Brick.h
+//  Brick+CoreDataClass.h
 //  LegoCollection
 //
-//  Created by Morgan Davison on 3/4/17.
+//  Created by Morgan Davison on 3/23/17.
 //  Copyright © 2017 Morgan Davison. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "Set.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface Brick : NSObject <NSCoding>
+@class Set;
 
-@property (nonatomic) NSString *itemNumber;
-@property (nonatomic) UIImage *brickImage;
-@property (nonatomic) bool missing;
-@property (nonatomic) Set *set;
+NS_ASSUME_NONNULL_BEGIN
+
+@interface Brick : NSManagedObject
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "Brick+CoreDataProperties.h"

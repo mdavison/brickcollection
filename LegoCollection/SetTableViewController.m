@@ -11,11 +11,16 @@
 
 @interface SetTableViewController ()
 
+@property (strong, nonatomic) Set *set;
+
 @end
+
 
 @implementation SetTableViewController
 
 - (void)viewDidLoad {
+    self.set = [[Set alloc] initWithContext:self.managedObjectContext];
+    
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -39,13 +44,14 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.dataModel.sets count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SetCell" forIndexPath:indexPath];
     
-    Set *set = self.dataModel.sets[indexPath.row];
+    Set *set = (Set *)[self.fetchedResultsController objectAtIndexPath:indexPath];
     
     [self configureCell:cell withSet:set];
     
@@ -62,10 +68,8 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        Set *set = self.dataModel.sets[indexPath.row];
-        [self.dataModel.sets removeObject:set];
-        
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath: indexPath]];
     }   
 }
 
@@ -89,9 +93,9 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     SetDetailTableViewController *controller = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    Set *set = self.dataModel.sets[indexPath.row];
     
-    controller.set = set;
+    controller.set = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    controller.managedObjectContext = self.managedObjectContext;
 }
 
 
@@ -99,7 +103,7 @@
 
 - (void)configureCell:(UITableViewCell *)cell withSet:(Set *)set {
     UIImageView *setImageView = [cell viewWithTag:1000];
-    setImageView.image = set.productImage;
+    setImageView.image = [UIImage imageWithData:set.productImage];
     
     UILabel *setNameLabel = [cell viewWithTag:1001];
     setNameLabel.text = set.productName;
@@ -107,5 +111,100 @@
     UILabel *setNumberLabel = [cell viewWithTag:1002];
     setNumberLabel.text = set.productNumber;
 }
+
+
+#pragma mark - Fetched results controller
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (_fetchedResultsController != nil) {
+        return _fetchedResultsController;
+    }
+    
+    NSFetchedResultsController *aFetchedResultsController = [self.set getFetchedResultsController];
+    
+    aFetchedResultsController.delegate = self;
+    self.fetchedResultsController = aFetchedResultsController;
+    
+    NSError *error = nil;
+    if (![self.fetchedResultsController performFetch:&error]) {
+        NSLog(@"Unable to perform fetch for Set %@, %@", error, [error userInfo]);
+        
+        // Alert user
+        UIAlertController *alertController = [UIAlertController
+                                              alertControllerWithTitle:[NSString localizedStringWithFormat:@"%@", @"Error"]
+                                              message:[NSString localizedStringWithFormat:@"%@", @"There was a problem loading your data."]
+                                              preferredStyle:UIAlertControllerStyleAlert];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            //abort(); // Could abort here if need to generate crash log
+        }]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    
+    return _fetchedResultsController;
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        default:
+            return;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    UITableView *tableView = self.tableView;
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            [self configureCell:[tableView cellForRowAtIndexPath:indexPath] withSet:(Set *)anObject];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            [tableView moveRowAtIndexPath:indexPath toIndexPath:newIndexPath];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+
+/*
+ // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
+ 
+ - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+ {
+ // In the simplest, most efficient, case, reload the table view.
+ [self.tableView reloadData];
+ }
+ */
 
 @end

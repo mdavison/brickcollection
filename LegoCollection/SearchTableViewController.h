@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
 #import "ResultsTableViewController.h"
 #import "BrickResultsTableViewController.h"
 #import "Brick.h"
@@ -21,8 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *brickSearchTextField;
 @property (weak, nonatomic) IBOutlet UIButton *brickSearchButton;
 
-
-@property (nonatomic) DataModel *dataModel;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 - (IBAction)search:(UIButton *)sender;
 - (IBAction)brickSearch:(UIButton *)sender;

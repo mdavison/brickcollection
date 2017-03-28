@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
 #import "Set.h"
 #import "Brick.h"
 #import "FindBrickResultsTableViewController.h"
 
 @interface MissingBricksTableViewController : UITableViewController
 
-@property (nonatomic) DataModel *dataModel;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

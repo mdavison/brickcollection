@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
 #import "Set.h"
 #import "Brick.h"
 
@@ -22,7 +21,7 @@
 @interface ResultsTableViewController : UITableViewController
 
 @property (nonatomic) id <ResultsTableViewControllerDelegate> delegate;
-@property (nonatomic) DataModel *dataModel;
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) NSDictionary *jsonData;
 @property (nonatomic) NSError *error;
 

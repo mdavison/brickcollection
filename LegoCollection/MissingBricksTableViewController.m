@@ -106,7 +106,7 @@
     if ([segue.identifier isEqualToString:@"FindMissingBrickSegue"]) {
         FindBrickResultsTableViewController *controller = segue.destinationViewController;
         
-        controller.dataModel = self.dataModel;
+        controller.managedObjectContext = self.managedObjectContext;
         controller.missingBrick = (Brick *)sender;
     }
 }
@@ -118,7 +118,8 @@
     // Reset the array so we don't get dupes
     self.missingBricks = [NSMutableArray array];
     
-    for (Set *set in self.dataModel.sets) {
+    NSArray *allSets = [Set getAllWithManagedObjectContext:self.managedObjectContext];
+    for (Set *set in allSets) {
         for (Brick *brick in set.bricks) {
             if (brick.missing) {
                 [self.missingBricks addObject:brick];
@@ -135,7 +136,7 @@
     UILabel *setLabel = [cell viewWithTag:3002];
     UIImageView *checkmarkImageView = [cell viewWithTag:3003];
     
-    brickImageView.image = brick.brickImage;
+    brickImageView.image = [UIImage imageWithData:brick.brickImage];
     brickLabel.text = [@"Item No: " stringByAppendingString:brick.itemNumber];
     setLabel.text = [@"Set: " stringByAppendingString:brick.set.productName];
     
@@ -146,5 +147,6 @@
         [checkmarkImageView setHidden:true];
     }
 }
+
 
 @end
