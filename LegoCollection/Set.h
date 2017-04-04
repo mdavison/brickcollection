@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Set : NSManagedObject
 
-- (NSFetchedResultsController *) getFetchedResultsController;
+//- (NSFetchedResultsController *) getFetchedResultsController;
 + (NSArray *)getAllWithManagedObjectContext:(NSManagedObjectContext *)context;
 
 @end

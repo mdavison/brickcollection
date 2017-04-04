@@ -11,20 +11,14 @@
 
 @interface SetTableViewController ()
 
-@property (strong, nonatomic) Set *set;
-
 @end
 
 
 @implementation SetTableViewController
 
 - (void)viewDidLoad {
-    self.set = [[Set alloc] initWithContext:self.managedObjectContext];
     
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
     //Display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -121,13 +115,29 @@
         return _fetchedResultsController;
     }
     
-    NSFetchedResultsController *aFetchedResultsController = [self.set getFetchedResultsController];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Set" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Set the batch size to a suitable number.
+    [fetchRequest setFetchBatchSize:20];
+    
+    // Edit the sort key as appropriate.
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productName" ascending:NO];
+    
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    // Relationship paths for prefetching
+    fetchRequest.relationshipKeyPathsForPrefetching = [NSArray arrayWithObject:@"bricks"];
+    
+    // Edit the section name key path and cache name if appropriate.
+    // nil for section name key path means "no sections".
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
-    self.fetchedResultsController = aFetchedResultsController;
     
     NSError *error = nil;
-    if (![self.fetchedResultsController performFetch:&error]) {
+    if (![aFetchedResultsController performFetch:&error]) {
         NSLog(@"Unable to perform fetch for Set %@, %@", error, [error userInfo]);
         
         // Alert user
@@ -142,6 +152,7 @@
         [self presentViewController:alertController animated:YES completion:nil];
     }
     
+    _fetchedResultsController = aFetchedResultsController;
     return _fetchedResultsController;
 }
 

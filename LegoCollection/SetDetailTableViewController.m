@@ -241,11 +241,8 @@
     for (Brick *brick in self.selectedBricks) {
         if (brick.missing == true) {
             missing = true;
-            NSLog(@"the brick is missing");
         } else {
             notMissing = true;
-            NSLog(@"The brick is NOT missing");
-            NSLog(@"brick info: %@", brick.itemNumber);
         }
     }
     

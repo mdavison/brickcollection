@@ -21,12 +21,32 @@
 		90B8EE671E83F842009BE58E /* Brick+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE611E83F842009BE58E /* Brick+CoreDataProperties.m */; };
 		90B8EE681E83F842009BE58E /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE631E83F842009BE58E /* Set.m */; };
 		90B8EE691E83F842009BE58E /* Set+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */; };
+		90B8EE971E8B4CEB009BE58E /* LegoCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE961E8B4CEB009BE58E /* LegoCollectionTests.m */; };
+		90B8EE9F1E8B4DF4009BE58E /* SetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE9E1E8B4DF4009BE58E /* SetTests.m */; };
+		90B8EED01E8D381D009BE58E /* LegoCollectionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */; };
 		90C60B581E622740006941C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B571E622740006941C0 /* main.m */; };
 		90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B5A1E622740006941C0 /* AppDelegate.m */; };
 		90C60B611E622740006941C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B5F1E622740006941C0 /* Main.storyboard */; };
 		90C60B631E622740006941C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B621E622740006941C0 /* Assets.xcassets */; };
 		90C60B661E622740006941C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B641E622740006941C0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		90B8EE991E8B4CEB009BE58E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90C60B4B1E622740006941C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90C60B521E622740006941C0;
+			remoteInfo = LegoCollection;
+		};
+		90B8EED21E8D381D009BE58E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 90C60B4B1E622740006941C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90C60B521E622740006941C0;
+			remoteInfo = LegoCollection;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		90B8EE1D1E629252009BE58E /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
@@ -56,6 +76,13 @@
 		90B8EE631E83F842009BE58E /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
 		90B8EE641E83F842009BE58E /* Set+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Set+CoreDataProperties.h"; sourceTree = "<group>"; };
 		90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Set+CoreDataProperties.m"; sourceTree = "<group>"; };
+		90B8EE941E8B4CEB009BE58E /* LegoCollectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegoCollectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B8EE961E8B4CEB009BE58E /* LegoCollectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegoCollectionTests.m; sourceTree = "<group>"; };
+		90B8EE981E8B4CEB009BE58E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90B8EE9E1E8B4DF4009BE58E /* SetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTests.m; sourceTree = "<group>"; };
+		90B8EECD1E8D381D009BE58E /* LegoCollectionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegoCollectionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegoCollectionUITests.m; sourceTree = "<group>"; };
+		90B8EED11E8D381D009BE58E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,6 +94,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		90B8EE911E8B4CEB009BE58E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90B8EECA1E8D381D009BE58E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90C60B501E622740006941C0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -118,10 +159,31 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		90B8EE951E8B4CEB009BE58E /* LegoCollectionTests */ = {
+			isa = PBXGroup;
+			children = (
+				90B8EE9E1E8B4DF4009BE58E /* SetTests.m */,
+				90B8EE961E8B4CEB009BE58E /* LegoCollectionTests.m */,
+				90B8EE981E8B4CEB009BE58E /* Info.plist */,
+			);
+			path = LegoCollectionTests;
+			sourceTree = "<group>";
+		};
+		90B8EECE1E8D381D009BE58E /* LegoCollectionUITests */ = {
+			isa = PBXGroup;
+			children = (
+				90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */,
+				90B8EED11E8D381D009BE58E /* Info.plist */,
+			);
+			path = LegoCollectionUITests;
+			sourceTree = "<group>";
+		};
 		90C60B4A1E622740006941C0 = {
 			isa = PBXGroup;
 			children = (
 				90C60B551E622740006941C0 /* LegoCollection */,
+				90B8EE951E8B4CEB009BE58E /* LegoCollectionTests */,
+				90B8EECE1E8D381D009BE58E /* LegoCollectionUITests */,
 				90C60B541E622740006941C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -130,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				90C60B531E622740006941C0 /* LegoCollection.app */,
+				90B8EE941E8B4CEB009BE58E /* LegoCollectionTests.xctest */,
+				90B8EECD1E8D381D009BE58E /* LegoCollectionUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +225,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		90B8EE931E8B4CEB009BE58E /* LegoCollectionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90B8EE9D1E8B4CEB009BE58E /* Build configuration list for PBXNativeTarget "LegoCollectionTests" */;
+			buildPhases = (
+				90B8EE901E8B4CEB009BE58E /* Sources */,
+				90B8EE911E8B4CEB009BE58E /* Frameworks */,
+				90B8EE921E8B4CEB009BE58E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90B8EE9A1E8B4CEB009BE58E /* PBXTargetDependency */,
+			);
+			name = LegoCollectionTests;
+			productName = LegoCollectionTests;
+			productReference = 90B8EE941E8B4CEB009BE58E /* LegoCollectionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		90B8EECC1E8D381D009BE58E /* LegoCollectionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90B8EED41E8D381D009BE58E /* Build configuration list for PBXNativeTarget "LegoCollectionUITests" */;
+			buildPhases = (
+				90B8EEC91E8D381D009BE58E /* Sources */,
+				90B8EECA1E8D381D009BE58E /* Frameworks */,
+				90B8EECB1E8D381D009BE58E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				90B8EED31E8D381D009BE58E /* PBXTargetDependency */,
+			);
+			name = LegoCollectionUITests;
+			productName = LegoCollectionUITests;
+			productReference = 90B8EECD1E8D381D009BE58E /* LegoCollectionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		90C60B521E622740006941C0 /* LegoCollection */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 90C60B6A1E622740006941C0 /* Build configuration list for PBXNativeTarget "LegoCollection" */;
@@ -187,6 +287,18 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Morgan Davison";
 				TargetAttributes = {
+					90B8EE931E8B4CEB009BE58E = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2TEP68NZCD;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 90C60B521E622740006941C0;
+					};
+					90B8EECC1E8D381D009BE58E = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2TEP68NZCD;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 90C60B521E622740006941C0;
+					};
 					90C60B521E622740006941C0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 2TEP68NZCD;
@@ -209,11 +321,27 @@
 			projectRoot = "";
 			targets = (
 				90C60B521E622740006941C0 /* LegoCollection */,
+				90B8EE931E8B4CEB009BE58E /* LegoCollectionTests */,
+				90B8EECC1E8D381D009BE58E /* LegoCollectionUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		90B8EE921E8B4CEB009BE58E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90B8EECB1E8D381D009BE58E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90C60B511E622740006941C0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -227,6 +355,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		90B8EE901E8B4CEB009BE58E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90B8EE9F1E8B4DF4009BE58E /* SetTests.m in Sources */,
+				90B8EE971E8B4CEB009BE58E /* LegoCollectionTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90B8EEC91E8D381D009BE58E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90B8EED01E8D381D009BE58E /* LegoCollectionUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		90C60B4F1E622740006941C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -252,6 +397,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		90B8EE9A1E8B4CEB009BE58E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90C60B521E622740006941C0 /* LegoCollection */;
+			targetProxy = 90B8EE991E8B4CEB009BE58E /* PBXContainerItemProxy */;
+		};
+		90B8EED31E8D381D009BE58E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 90C60B521E622740006941C0 /* LegoCollection */;
+			targetProxy = 90B8EED21E8D381D009BE58E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		90C60B5F1E622740006941C0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -272,6 +430,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		90B8EE9B1E8B4CEB009BE58E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				INFOPLIST_FILE = LegoCollectionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LegoCollection.app/LegoCollection";
+			};
+			name = Debug;
+		};
+		90B8EE9C1E8B4CEB009BE58E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				INFOPLIST_FILE = LegoCollectionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LegoCollection.app/LegoCollection";
+			};
+			name = Release;
+		};
+		90B8EED51E8D381D009BE58E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				INFOPLIST_FILE = LegoCollectionUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LegoCollection;
+			};
+			name = Debug;
+		};
+		90B8EED61E8D381D009BE58E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				INFOPLIST_FILE = LegoCollectionUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = LegoCollection;
+			};
+			name = Release;
+		};
 		90C60B681E622740006941C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -396,6 +604,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		90B8EE9D1E8B4CEB009BE58E /* Build configuration list for PBXNativeTarget "LegoCollectionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90B8EE9B1E8B4CEB009BE58E /* Debug */,
+				90B8EE9C1E8B4CEB009BE58E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		90B8EED41E8D381D009BE58E /* Build configuration list for PBXNativeTarget "LegoCollectionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90B8EED51E8D381D009BE58E /* Debug */,
+				90B8EED61E8D381D009BE58E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		90C60B4E1E622740006941C0 /* Build configuration list for PBXProject "LegoCollection" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
