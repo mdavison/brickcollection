@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Set *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSNumber *displayOrder;
 @property (nullable, nonatomic, copy) NSString *productName;
 @property (nullable, nonatomic, copy) NSString *productNumber;
 @property (nullable, nonatomic, retain) NSData *productImage;

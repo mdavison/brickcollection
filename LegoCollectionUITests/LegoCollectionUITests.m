@@ -142,5 +142,38 @@
     [tabBarsQuery.buttons[@"Sets"] tap];
 }
 
+- (void)testRearrangingSets {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    // Insert another set to make sure we have more than 1
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Search"] tap];
+    XCUIElementQuery *tablesQuery = app.tables;
+    // Clear the search text field
+    [tablesQuery.buttons[@"Clear text"] tap];
+    // Enter the new set to search for
+    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"21029"];
+    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
+    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
+    [app.alerts[@"Added!"].buttons[@"OK"] tap];
+    [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
+    [tabBarsQuery.buttons[@"Sets"] tap];
+    // Assert the set exists
+    XCTAssert(app.staticTexts[@"Buckingham Palace"].exists);
+    
+    
+    // Tap the edit button in the navigation
+    [app.navigationBars[@"My Sets"].buttons[@"Edit"] tap];
+    
+    XCUIElement *topButton = app.tables.buttons[@"Reorder Buckingham Palace, 21029"];
+    XCUIElement *bottomButton = app.tables.buttons[@"Reorder Horse Vet Trailer, 41125"];
+    
+    [bottomButton pressForDuration:0.5 thenDragToElement:topButton];
+    
+    [app.navigationBars[@"My Sets"].buttons[@"Done"] tap];
+}
+
+
+
 
 @end

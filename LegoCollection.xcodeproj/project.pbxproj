@@ -83,6 +83,7 @@
 		90B8EECD1E8D381D009BE58E /* LegoCollectionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LegoCollectionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegoCollectionUITests.m; sourceTree = "<group>"; };
 		90B8EED11E8D381D009BE58E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LegoCollectionV2.xcdatamodel; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -611,6 +612,7 @@
 				90B8EE9C1E8B4CEB009BE58E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90B8EED41E8D381D009BE58E /* Build configuration list for PBXNativeTarget "LegoCollectionUITests" */ = {
 			isa = XCConfigurationList;
@@ -619,6 +621,7 @@
 				90B8EED61E8D381D009BE58E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		90C60B4E1E622740006941C0 /* Build configuration list for PBXProject "LegoCollection" */ = {
 			isa = XCConfigurationList;
@@ -644,9 +647,10 @@
 		90B8EE461E83F04F009BE58E /* LegoCollection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */,
 				90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */,
 			);
-			currentVersion = 90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */;
+			currentVersion = 90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */;
 			path = LegoCollection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

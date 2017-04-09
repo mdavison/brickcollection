@@ -67,19 +67,28 @@
     }   
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+// Allow rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
+    // Set displayOrder property whenever rearranging occurs
+    NSMutableArray *allSets = [[self.fetchedResultsController fetchedObjects] mutableCopy];
+    NSManagedObject *setBeingMoved = [[self fetchedResultsController] objectAtIndexPath:fromIndexPath];
+    
+    // Remove the set being moved from the array
+    [allSets removeObject:setBeingMoved];
+    
+    // Now re-insert it at the destination.
+    [allSets insertObject:setBeingMoved atIndex:[toIndexPath row]];
+    
+    // All sets are now in their correct order - set the displayOrder property on each
+    int i = 1;
+    for (Set *set in allSets) {
+        [set setValue:[NSNumber numberWithInt:i++] forKey:@"displayOrder"];
+    }
+    
+    [self.managedObjectContext save:nil];
 }
-*/
 
 
 #pragma mark - Navigation
@@ -124,9 +133,10 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productName" ascending:NO];
+    NSSortDescriptor *displayOrderSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayOrder" ascending:YES];
+    NSSortDescriptor *productNameSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"productName" ascending:YES];
     
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setSortDescriptors:@[displayOrderSortDescriptor, productNameSortDescriptor]];
     
     // Relationship paths for prefetching
     fetchRequest.relationshipKeyPathsForPrefetching = [NSArray arrayWithObject:@"bricks"];

@@ -14,6 +14,7 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Set"];
 }
 
+@dynamic displayOrder;
 @dynamic productName;
 @dynamic productNumber;
 @dynamic productImage;
