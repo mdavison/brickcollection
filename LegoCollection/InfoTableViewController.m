@@ -36,14 +36,13 @@
 
 #pragma mark - Actions
 
-- (IBAction)openIcons8Link:(UIButton *)sender {
+- (IBAction)openLink:(UIButton *)sender {
     NSURL *url = [NSURL URLWithString:sender.titleLabel.text];
     [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
 }
 
-- (IBAction)openMakeAppIconLink:(UIButton *)sender {
-    NSURL *url = [NSURL URLWithString:sender.titleLabel.text];
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+- (IBAction)rate:(UIButton *)sender {
+    [SKStoreReviewController requestReview];
 }
 
 @end

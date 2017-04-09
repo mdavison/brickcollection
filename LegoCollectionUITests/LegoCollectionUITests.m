@@ -161,19 +161,41 @@
     // Assert the set exists
     XCTAssert(app.staticTexts[@"Buckingham Palace"].exists);
     
-    
     // Tap the edit button in the navigation
     [app.navigationBars[@"My Sets"].buttons[@"Edit"] tap];
     
     XCUIElement *topButton = app.tables.buttons[@"Reorder Buckingham Palace, 21029"];
     XCUIElement *bottomButton = app.tables.buttons[@"Reorder Horse Vet Trailer, 41125"];
     
+    // Drag the bottom button up to re-order
     [bottomButton pressForDuration:0.5 thenDragToElement:topButton];
+    
+    // Assert that the bottom one is now the top one
+    XCUIElement *firstCell = [tablesQuery.cells elementBoundByIndex:0];
+    XCTAssert(firstCell.staticTexts[@"Horse Vet Trailer"].exists);
     
     [app.navigationBars[@"My Sets"].buttons[@"Done"] tap];
 }
 
-
+- (void)testInfoScreen {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Info"] tap];
+    
+    XCUIElementQuery *tablesQuery = app.tables;
+    // Check that all the links are there
+    XCTAssert(tablesQuery.buttons[@"https://icons8.com"].exists);
+    XCTAssert(tablesQuery.buttons[@"https://makeappicon.com"].exists);
+    XCTAssert(tablesQuery.buttons[@"https://morgandavison.com/apps"].exists);
+    
+    // Tap the Rate button
+    [tablesQuery.buttons[@"Rate"] tap];
+    [[[app childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:0].otherElements[@"Rating"] tap];
+    [app.staticTexts[@"Cancel"] tap];
+    
+    // Navigate back to sets so tear-down can delete set
+    [tabBarsQuery.buttons[@"Sets"] tap];
+}
 
 
 @end

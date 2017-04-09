@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <StoreKit/StoreKit.h>
 
 @interface InfoTableViewController : UITableViewController
 
-- (IBAction)openIcons8Link:(UIButton *)sender;
-- (IBAction)openMakeAppIconLink:(UIButton *)sender;
+- (IBAction)openLink:(UIButton *)sender;
+- (IBAction)rate:(UIButton *)sender;
 
 @end

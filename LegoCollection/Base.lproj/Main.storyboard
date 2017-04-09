@@ -309,7 +309,7 @@
                                                     <rect key="frame" x="8" y="37" width="304" height="30"/>
                                                     <state key="normal" title="https://icons8.com"/>
                                                     <connections>
-                                                        <action selector="openIcons8Link:" destination="quc-5F-b91" eventType="touchUpInside" id="CWu-Qj-uci"/>
+                                                        <action selector="openLink:" destination="quc-5F-b91" eventType="touchUpInside" id="b3l-gW-Zj1"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -340,7 +340,7 @@
                                                     <rect key="frame" x="8" y="37" width="304" height="30"/>
                                                     <state key="normal" title="https://makeappicon.com"/>
                                                     <connections>
-                                                        <action selector="openMakeAppIconLink:" destination="quc-5F-b91" eventType="touchUpInside" id="o4I-Hr-bJv"/>
+                                                        <action selector="openLink:" destination="quc-5F-b91" eventType="touchUpInside" id="pZA-3I-8nd"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -351,6 +351,63 @@
                                                 <constraint firstItem="aIW-Oe-I1R" firstAttribute="top" secondItem="Srq-pK-fax" secondAttribute="topMargin" id="Rne-5S-2Mt"/>
                                                 <constraint firstItem="Xjc-kp-VYN" firstAttribute="leading" secondItem="Srq-pK-fax" secondAttribute="leadingMargin" id="ldc-yg-6KW"/>
                                                 <constraint firstItem="aIW-Oe-I1R" firstAttribute="leading" secondItem="Srq-pK-fax" secondAttribute="leadingMargin" id="qaN-dx-eBM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Developer" id="64C-p4-Xjs">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Wib-Zf-lKy">
+                                        <rect key="frame" x="0.0" y="269.5" width="320" height="79"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wib-Zf-lKy" id="XGq-lo-3ay">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Morgan Davison" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4Q-oE-cpz">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAs-bB-5io">
+                                                    <rect key="frame" x="8" y="37" width="304" height="30"/>
+                                                    <state key="normal" title="https://morgandavison.com/apps"/>
+                                                    <connections>
+                                                        <action selector="openLink:" destination="quc-5F-b91" eventType="touchUpInside" id="StF-yI-7QJ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="c4Q-oE-cpz" firstAttribute="top" secondItem="XGq-lo-3ay" secondAttribute="topMargin" id="2gU-EN-8Y0"/>
+                                                <constraint firstItem="gAs-bB-5io" firstAttribute="top" secondItem="c4Q-oE-cpz" secondAttribute="bottom" constant="8" symbolic="YES" id="6u8-qE-9Hg"/>
+                                                <constraint firstItem="gAs-bB-5io" firstAttribute="trailing" secondItem="XGq-lo-3ay" secondAttribute="trailingMargin" id="D1I-xE-1rm"/>
+                                                <constraint firstItem="c4Q-oE-cpz" firstAttribute="leading" secondItem="XGq-lo-3ay" secondAttribute="leadingMargin" id="F72-xG-X0b"/>
+                                                <constraint firstItem="gAs-bB-5io" firstAttribute="leading" secondItem="XGq-lo-3ay" secondAttribute="leadingMargin" id="WOm-Sf-bWI"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="c4Q-oE-cpz" secondAttribute="trailing" id="guM-le-g6j"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JrL-s6-uZo">
+                                        <rect key="frame" x="0.0" y="348.5" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JrL-s6-uZo" id="j64-5p-UQh">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WAB-tY-zlm">
+                                                    <rect key="frame" x="8" y="7" width="304" height="30"/>
+                                                    <state key="normal" title="Rate"/>
+                                                    <connections>
+                                                        <action selector="rate:" destination="quc-5F-b91" eventType="touchUpInside" id="ZS8-64-m3K"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WAB-tY-zlm" firstAttribute="leading" secondItem="j64-5p-UQh" secondAttribute="leadingMargin" id="2gq-ft-gbL"/>
+                                                <constraint firstItem="WAB-tY-zlm" firstAttribute="centerY" secondItem="j64-5p-UQh" secondAttribute="centerY" id="KFr-6D-xVn"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="WAB-tY-zlm" secondAttribute="trailing" id="Xrg-wW-sKr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
