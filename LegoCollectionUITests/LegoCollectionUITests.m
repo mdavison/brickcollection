@@ -191,6 +191,7 @@
     // Tap the Rate button
     [tablesQuery.buttons[@"Rate"] tap];
     [[[app childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:0].otherElements[@"Rating"] tap];
+    XCTAssert(app.staticTexts[@"Cancel"].exists);
     [app.staticTexts[@"Cancel"] tap];
     
     // Navigate back to sets so tear-down can delete set
