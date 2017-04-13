@@ -660,10 +660,23 @@
                                                 <constraint firstAttribute="width" constant="183" id="kGf-R2-2r2"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-wh-6FA">
+                                            <rect key="frame" x="262" y="91.5" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="Rgz-qf-VNv"/>
+                                                <constraint firstAttribute="width" constant="50" id="z4e-ym-gmr"/>
+                                            </constraints>
+                                            <state key="normal" image="Instructions"/>
+                                            <connections>
+                                                <segue destination="AcP-MY-gGn" kind="show" id="GXa-Cr-amP"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="exa-6B-RS5" firstAttribute="centerX" secondItem="RPR-mA-OHz" secondAttribute="centerX" id="8Zg-oB-xcb"/>
                                         <constraint firstItem="exa-6B-RS5" firstAttribute="centerY" secondItem="RPR-mA-OHz" secondAttribute="centerY" id="GMN-wX-EV3"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="1L0-wh-6FA" secondAttribute="bottom" id="aqp-RI-OKm"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="1L0-wh-6FA" secondAttribute="trailing" id="wlc-Cs-rc4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -726,6 +739,93 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nX2-ZF-qap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1134.375" y="-1313.0281690140846"/>
+        </scene>
+        <!--Instructions Collection View Controller-->
+        <scene sceneID="B1I-RU-C67">
+            <objects>
+                <collectionViewController id="AcP-MY-gGn" customClass="InstructionsCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="liI-RS-3bO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ubE-mS-6NA">
+                            <size key="itemSize" width="136" height="91"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" id="ZDP-8p-9SZ">
+                            <rect key="frame" x="0.0" y="-64" width="320" height="568"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InstructionsCell" id="hYk-cI-EuP">
+                                <rect key="frame" x="0.0" y="0.0" width="136" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="136" height="91"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C6P-sM-qSU">
+                                            <rect key="frame" x="5" y="0.0" width="126" height="81"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="81" id="0D3-8x-hDK"/>
+                                                <constraint firstAttribute="width" constant="126" id="1n2-Ko-xN3"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="C6P-sM-qSU" firstAttribute="centerY" secondItem="hYk-cI-EuP" secondAttribute="centerY" id="bMn-n1-BHa"/>
+                                    <constraint firstItem="C6P-sM-qSU" firstAttribute="centerX" secondItem="hYk-cI-EuP" secondAttribute="centerX" id="cCn-KX-7x7"/>
+                                </constraints>
+                                <size key="customSize" width="136" height="91"/>
+                                <connections>
+                                    <segue destination="klM-wT-eFI" kind="show" id="4nZ-5L-NK0"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="AcP-MY-gGn" id="Ewu-Fc-mUK"/>
+                            <outlet property="delegate" destination="AcP-MY-gGn" id="qpi-sa-zSg"/>
+                        </connections>
+                    </collectionView>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ZDP-8p-9SZ" id="css-gr-pnz"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="37k-Y8-bA1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1951.875" y="-1540.1408450704225"/>
+        </scene>
+        <!--Instructions Detail View Controller-->
+        <scene sceneID="PoJ-Aw-Vkc">
+            <objects>
+                <viewController id="klM-wT-eFI" customClass="InstructionsDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mrC-vv-LhZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="svJ-GI-Vqx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="17s-iH-xYt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khN-9G-aqU">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="khN-9G-aqU" id="J96-ya-4MQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I1H-fz-xdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2638" y="-1540"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7Qs-HC-Ow6">
@@ -811,6 +911,7 @@
         <image name="Checkmark" width="25" height="25"/>
         <image name="Exclamation" width="25" height="25"/>
         <image name="Info" width="25" height="25"/>
+        <image name="Instructions" width="50" height="50"/>
         <image name="Question" width="25" height="25"/>
     </resources>
 </document>

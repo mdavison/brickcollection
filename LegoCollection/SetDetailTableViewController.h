@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Set.h"
 #import "Brick.h"
+#import "InstructionsCollectionViewController.h"
 
 @interface SetDetailTableViewController : UITableViewController
 

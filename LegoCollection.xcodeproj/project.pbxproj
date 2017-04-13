@@ -24,6 +24,8 @@
 		90B8EE971E8B4CEB009BE58E /* LegoCollectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE961E8B4CEB009BE58E /* LegoCollectionTests.m */; };
 		90B8EE9F1E8B4DF4009BE58E /* SetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE9E1E8B4DF4009BE58E /* SetTests.m */; };
 		90B8EED01E8D381D009BE58E /* LegoCollectionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */; };
+		90BCD7911E9D0B6200F4801B /* InstructionsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BCD7901E9D0B6200F4801B /* InstructionsDetailViewController.m */; };
+		90BCD7941E9E56F900F4801B /* InstructionsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90BCD7931E9E56F900F4801B /* InstructionsCollectionViewController.m */; };
 		90C60B581E622740006941C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B571E622740006941C0 /* main.m */; };
 		90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90C60B5A1E622740006941C0 /* AppDelegate.m */; };
 		90C60B611E622740006941C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90C60B5F1E622740006941C0 /* Main.storyboard */; };
@@ -84,6 +86,11 @@
 		90B8EECF1E8D381D009BE58E /* LegoCollectionUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegoCollectionUITests.m; sourceTree = "<group>"; };
 		90B8EED11E8D381D009BE58E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LegoCollectionV2.xcdatamodel; sourceTree = "<group>"; };
+		90BCD78D1E9AF76E00F4801B /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = ../../../../../usr/lib/libxml2.2.dylib; sourceTree = "<group>"; };
+		90BCD78F1E9D0B6200F4801B /* InstructionsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsDetailViewController.h; sourceTree = "<group>"; };
+		90BCD7901E9D0B6200F4801B /* InstructionsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsDetailViewController.m; sourceTree = "<group>"; };
+		90BCD7921E9E56F900F4801B /* InstructionsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsCollectionViewController.h; sourceTree = "<group>"; };
+		90BCD7931E9E56F900F4801B /* InstructionsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsCollectionViewController.m; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +151,10 @@
 				90B8EE241E65C2E2009BE58E /* SetTableViewController.m */,
 				90B8EE2C1E6B74D0009BE58E /* SetDetailTableViewController.h */,
 				90B8EE2D1E6B74D0009BE58E /* SetDetailTableViewController.m */,
+				90BCD7921E9E56F900F4801B /* InstructionsCollectionViewController.h */,
+				90BCD7931E9E56F900F4801B /* InstructionsCollectionViewController.m */,
+				90BCD78F1E9D0B6200F4801B /* InstructionsDetailViewController.h */,
+				90BCD7901E9D0B6200F4801B /* InstructionsDetailViewController.m */,
 				90B8EE1D1E629252009BE58E /* SearchTableViewController.h */,
 				90B8EE1E1E629252009BE58E /* SearchTableViewController.m */,
 				90B8EE201E6389D0009BE58E /* ResultsTableViewController.h */,
@@ -179,6 +190,14 @@
 			path = LegoCollectionUITests;
 			sourceTree = "<group>";
 		};
+		90BCD78C1E9AF76E00F4801B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				90BCD78D1E9AF76E00F4801B /* libxml2.2.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		90C60B4A1E622740006941C0 = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +205,7 @@
 				90B8EE951E8B4CEB009BE58E /* LegoCollectionTests */,
 				90B8EECE1E8D381D009BE58E /* LegoCollectionUITests */,
 				90C60B541E622740006941C0 /* Products */,
+				90BCD78C1E9AF76E00F4801B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -377,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90BCD7941E9E56F900F4801B /* InstructionsCollectionViewController.m in Sources */,
 				90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */,
 				90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */,
 				90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */,
@@ -386,6 +407,7 @@
 				90B8EE691E83F842009BE58E /* Set+CoreDataProperties.m in Sources */,
 				90B8EE251E65C2E2009BE58E /* SetTableViewController.m in Sources */,
 				90B8EE671E83F842009BE58E /* Brick+CoreDataProperties.m in Sources */,
+				90BCD7911E9D0B6200F4801B /* InstructionsDetailViewController.m in Sources */,
 				90B8EE431E815C3F009BE58E /* CoreDataStack.m in Sources */,
 				90B8EE221E6389D0009BE58E /* ResultsTableViewController.m in Sources */,
 				90B8EE341E6FB370009BE58E /* MissingBricksTableViewController.m in Sources */,
@@ -449,6 +471,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = LegoCollectionTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionTests;
@@ -473,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = LegoCollectionUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.morgandavison.LegoCollectionUITests;
@@ -521,6 +545,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -563,6 +588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
@@ -577,6 +603,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = LegoCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -594,6 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 2TEP68NZCD;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = LegoCollection/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
