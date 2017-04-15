@@ -47,7 +47,8 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    // Hide the toolbar
+    // Remove the checkmarks and hide the toolbar
+    [self.tableView reloadData];
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
@@ -59,14 +60,14 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 1;
-    } else {
+    if (section == 2) {
         return [self.orderedBricks count];
+    } else {
+        return 1;
     }
 }
 
@@ -74,10 +75,18 @@
     
     UITableViewCell *cell;
     
-    if ([indexPath section] == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCell" forIndexPath:indexPath];
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"BrickCell" forIndexPath:indexPath];
+    switch ([indexPath section]) {
+        case 0:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ProductCell" forIndexPath:indexPath];
+            break;
+        case 1:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"InstructionsCell" forIndexPath:indexPath];
+            break;
+        case 2:
+            cell = [tableView dequeueReusableCellWithIdentifier:@"BrickCell" forIndexPath:indexPath];
+            break;
+        default:
+            break;
     }
     
     [self configureCell:cell withSection:indexPath.section indexPath:indexPath];
@@ -86,57 +95,64 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1) {
-        return indexPath;
-    } else {
+    if (indexPath.section == 0) {
         return NULL;
+    } else {
+        return indexPath;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 177.0;
+    } else if (indexPath.section == 1) {
+        return 66.0;
     } else {
         return 112.0;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Show the checkmark
-    [self toggleCheckmarkOn:true forIndexPath:indexPath];
-    
-    // Show the toolbar
-    if ([self.navigationController.toolbar isHidden]) {
-        [self.navigationController setToolbarHidden:NO animated:YES];
+    if (indexPath.section == 2) {
+        // Show the checkmark
+        [self toggleCheckmarkOn:true forIndexPath:indexPath];
+        
+        // Show the toolbar
+        if ([self.navigationController.toolbar isHidden]) {
+            [self.navigationController setToolbarHidden:NO animated:YES];
+        }
+        
+        // Initialize the array if it hasn't been initialized yet
+        if (!self.selectedBricks) {
+            self.selectedBricks = [NSMutableArray array];
+        }
+        
+        // Add to selected sets array
+        Brick *selectedBrick = self.orderedBricks[indexPath.row];
+        [self.selectedBricks addObject:selectedBrick];
+        
+        [self toggleToolbarButtons];
     }
-    
-    // Initialize the array if it hasn't been initialized yet
-    if (!self.selectedBricks) {
-        self.selectedBricks = [NSMutableArray array];
-    }
-    
-    // Add to selected sets array
-    //Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
-    Brick *selectedBrick = self.orderedBricks[indexPath.row];
-    [self.selectedBricks addObject:selectedBrick];
-    
-    [self toggleToolbarButtons];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Hide the checkmark
-    [self toggleCheckmarkOn:false forIndexPath:indexPath];
-    
-    //Brick *selectedBrick = [self.set.bricks allObjects][indexPath.row];
-    Brick *selectedBrick = self.orderedBricks[indexPath.row];
-    [self.selectedBricks removeObject:selectedBrick];
-    
-    // If no more rows are selected, hide the toolbar
-    if ([[self.tableView indexPathsForSelectedRows] count] < 1) {
-        [self.navigationController setToolbarHidden:YES animated:YES];
+    if (indexPath.section == 2) {
+        // Hide the checkmark
+        [self toggleCheckmarkOn:false forIndexPath:indexPath];
+        
+        Brick *selectedBrick = self.orderedBricks[indexPath.row];
+        [self.selectedBricks removeObject:selectedBrick];
+        
+        // If no more rows are selected, hide the toolbar
+        if ([[self.tableView indexPathsForSelectedRows] count] < 1) {
+            [self.navigationController setToolbarHidden:YES animated:YES];
+        }
+        
+        [self toggleToolbarButtons];
+    } else if (indexPath.section == 1) {
+        // The deselect prevents the segue from happening automatically so we'll manually trigger it
+        [self performSegueWithIdentifier:@"InstructionsSegue" sender:nil];
     }
-    
-    [self toggleToolbarButtons];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -155,7 +171,6 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     InstructionsCollectionViewController *controller = (InstructionsCollectionViewController *)segue.destinationViewController;
     controller.set = self.set;
@@ -165,9 +180,13 @@
 #pragma mark - Helper methods
 
 - (void)configureCell:(UITableViewCell *)cell withSection:(NSInteger)section indexPath:(NSIndexPath *)indexPath {
+
     if (section == 0) {
         UIImageView *productImageView = [cell viewWithTag:2000];
         productImageView.image = [UIImage imageWithData:self.set.productImage];
+        NSLog(@"Product image: %@", self.set.productImage);
+    } else if (section == 1) {
+        // Instructions cell
     } else {
         // Get the views
         UIImageView *brickImageView = [cell viewWithTag:2002];

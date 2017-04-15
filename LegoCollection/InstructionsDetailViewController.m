@@ -51,6 +51,9 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     // Remove the network activity indicator from the status bar
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    // Stop the activity indicator
+    [self.activityIndicator stopAnimating];
 }
 
 @end

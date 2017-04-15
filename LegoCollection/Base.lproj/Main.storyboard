@@ -660,28 +660,49 @@
                                                 <constraint firstAttribute="width" constant="183" id="kGf-R2-2r2"/>
                                             </constraints>
                                         </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="exa-6B-RS5" firstAttribute="centerX" secondItem="RPR-mA-OHz" secondAttribute="centerX" id="8Zg-oB-xcb"/>
+                                        <constraint firstItem="exa-6B-RS5" firstAttribute="centerY" secondItem="RPR-mA-OHz" secondAttribute="centerY" id="GMN-wX-EV3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="InstructionsCell" rowHeight="66" id="h28-Ay-ZGY">
+                                <rect key="frame" x="0.0" y="205.5" width="320" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h28-Ay-ZGY" id="Fd7-fl-K8l">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="65.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1L0-wh-6FA">
-                                            <rect key="frame" x="262" y="91.5" width="50" height="50"/>
+                                            <rect key="frame" x="8" y="8" width="50" height="50"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="Rgz-qf-VNv"/>
                                                 <constraint firstAttribute="width" constant="50" id="z4e-ym-gmr"/>
                                             </constraints>
                                             <state key="normal" image="Instructions"/>
-                                            <connections>
-                                                <segue destination="AcP-MY-gGn" kind="show" id="GXa-Cr-amP"/>
-                                            </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4IC-6J-qbW">
+                                            <rect key="frame" x="66" y="22.5" width="213" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="exa-6B-RS5" firstAttribute="centerX" secondItem="RPR-mA-OHz" secondAttribute="centerX" id="8Zg-oB-xcb"/>
-                                        <constraint firstItem="exa-6B-RS5" firstAttribute="centerY" secondItem="RPR-mA-OHz" secondAttribute="centerY" id="GMN-wX-EV3"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="1L0-wh-6FA" secondAttribute="bottom" id="aqp-RI-OKm"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="1L0-wh-6FA" secondAttribute="trailing" id="wlc-Cs-rc4"/>
+                                        <constraint firstItem="1L0-wh-6FA" firstAttribute="leading" secondItem="Fd7-fl-K8l" secondAttribute="leadingMargin" id="3M3-vr-i3D"/>
+                                        <constraint firstItem="1L0-wh-6FA" firstAttribute="centerY" secondItem="Fd7-fl-K8l" secondAttribute="centerY" id="VSb-Wx-aNX"/>
+                                        <constraint firstItem="4IC-6J-qbW" firstAttribute="leading" secondItem="1L0-wh-6FA" secondAttribute="trailing" constant="8" symbolic="YES" id="Y8z-Jx-11r"/>
+                                        <constraint firstItem="4IC-6J-qbW" firstAttribute="trailing" secondItem="Fd7-fl-K8l" secondAttribute="trailingMargin" id="cxr-Yu-7Q3"/>
+                                        <constraint firstItem="4IC-6J-qbW" firstAttribute="centerY" secondItem="Fd7-fl-K8l" secondAttribute="centerY" id="yxW-wa-Yel"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="AcP-MY-gGn" kind="show" identifier="InstructionsSegue" id="uuH-Mz-36b"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="BrickCell" rowHeight="112" id="8ia-7f-q8F">
-                                <rect key="frame" x="0.0" y="205.5" width="320" height="112"/>
+                                <rect key="frame" x="0.0" y="271.5" width="320" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8ia-7f-q8F" id="FRt-LR-Xdh">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="111.5"/>
@@ -744,7 +765,7 @@
         <scene sceneID="B1I-RU-C67">
             <objects>
                 <collectionViewController id="AcP-MY-gGn" customClass="InstructionsCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="liI-RS-3bO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="liI-RS-3bO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -767,7 +788,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C6P-sM-qSU">
-                                            <rect key="frame" x="5" y="0.0" width="126" height="81"/>
+                                            <rect key="frame" x="5" y="5" width="126" height="81"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="81" id="0D3-8x-hDK"/>
                                                 <constraint firstAttribute="width" constant="126" id="1n2-Ko-xN3"/>
@@ -813,19 +834,27 @@
                             <webView contentMode="scaleToFill" fixedFrame="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khN-9G-aqU">
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="R2d-CL-5Bu">
+                                <rect key="frame" x="150" y="274" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R2d-CL-5Bu" firstAttribute="centerY" secondItem="17s-iH-xYt" secondAttribute="centerY" id="3K8-Wh-Hy1"/>
+                            <constraint firstItem="R2d-CL-5Bu" firstAttribute="centerX" secondItem="17s-iH-xYt" secondAttribute="centerX" id="XN1-2h-G88"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="R2d-CL-5Bu" id="EK1-op-Sbr"/>
                         <outlet property="webView" destination="khN-9G-aqU" id="J96-ya-4MQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I1H-fz-xdm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2638" y="-1540"/>
+            <point key="canvasLocation" x="2636.25" y="-1540.1408450704225"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7Qs-HC-Ow6">

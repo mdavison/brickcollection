@@ -138,20 +138,27 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     
     dispatch_async(queue, ^{
         
-        //        NSLog(@"instructionsImages: %@", [[[self.jsonData objectForKey:@"products"] objectAtIndex:0] objectForKey:@"buildingInstructions"]);
-        
         NSDictionary *instructions = [[[self.jsonData objectForKey:@"products"]
                                        objectAtIndex:0]
                                       objectForKey:@"buildingInstructions"];
         
         for (NSDictionary *instrItems in instructions) {
+            // Instructions Image
             NSString *instrImageURLString = [instrItems objectForKey:@"frontpageInfo"];
             NSURL *instrImageURL = [NSURL URLWithString:instrImageURLString];
             NSData *imageData = [NSData dataWithContentsOfURL:instrImageURL];
             UIImage *image = [UIImage imageWithData:imageData];
-            //[self.instructionsImages addObject:[instrItems objectForKey:@"frontpageInfo"]];
+            if (!image) {
+                // Image url didn't work so use the placeholder image
+                image = [UIImage imageNamed:@"ImageUnavailable"];
+            }
             [self.instructionsImages addObject:image];
-            [self.instructionsPDFs addObject:[instrItems objectForKey:@"pdfLocation"]];
+            
+            // PDF url
+            NSString *pdf = [instrItems objectForKey:@"pdfLocation"];
+            if (pdf) {
+                [self.instructionsPDFs addObject:pdf];
+            }
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{

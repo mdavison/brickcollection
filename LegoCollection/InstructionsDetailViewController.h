@@ -12,6 +12,8 @@
 @interface InstructionsDetailViewController : UIViewController <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 
 @property (nonatomic) NSString *pdfURLString;
 
