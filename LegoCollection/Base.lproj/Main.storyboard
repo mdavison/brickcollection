@@ -654,7 +654,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="2000" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exa-6B-RS5">
-                                            <rect key="frame" x="69" y="8" width="183" height="132"/>
+                                            <rect key="frame" x="68.5" y="8" width="183" height="132"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="132" id="hJB-ds-me7"/>
                                                 <constraint firstAttribute="width" constant="183" id="kGf-R2-2r2"/>
@@ -849,9 +849,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khN-9G-aqU">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khN-9G-aqU">
+                                <rect key="frame" x="20" y="72" width="280" height="439"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                             </webView>
@@ -861,8 +860,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="khN-9G-aqU" firstAttribute="top" secondItem="mrC-vv-LhZ" secondAttribute="bottom" constant="8" symbolic="YES" id="0kS-9b-Pht"/>
                             <constraint firstItem="R2d-CL-5Bu" firstAttribute="centerY" secondItem="17s-iH-xYt" secondAttribute="centerY" id="3K8-Wh-Hy1"/>
+                            <constraint firstItem="khN-9G-aqU" firstAttribute="leading" secondItem="17s-iH-xYt" secondAttribute="leading" constant="20" symbolic="YES" id="734-I4-PBD"/>
                             <constraint firstItem="R2d-CL-5Bu" firstAttribute="centerX" secondItem="17s-iH-xYt" secondAttribute="centerX" id="XN1-2h-G88"/>
+                            <constraint firstAttribute="trailing" secondItem="khN-9G-aqU" secondAttribute="trailing" constant="20" symbolic="YES" id="dsv-TI-G4K"/>
+                            <constraint firstItem="svJ-GI-Vqx" firstAttribute="top" secondItem="khN-9G-aqU" secondAttribute="bottom" constant="8" symbolic="YES" id="mJU-sv-qlu"/>
                         </constraints>
                     </view>
                     <connections>
