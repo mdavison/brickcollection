@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class Brick;
+@class Instructions;
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -19,5 +19,6 @@
 @dynamic productNumber;
 @dynamic productImage;
 @dynamic bricks;
+@dynamic instructions;
 
 @end

@@ -10,8 +10,7 @@
 
 @interface InstructionsCollectionViewController ()
 
-@property (nonatomic) NSMutableArray *instructionsImages;
-@property (nonatomic) NSMutableArray *instructionsPDFs;
+@property (nonatomic) NSMutableArray *instructionsArray;
 
 @end
 
@@ -23,15 +22,20 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.clearsSelectionOnViewWillAppear = NO;
     
     self.title = @"Instructions";
     
-    // Do any additional setup after loading the view.
-    self.instructionsImages = [NSMutableArray array];
-    self.instructionsPDFs = [NSMutableArray array];
-    
-    [self searchForInstructions];
+    // See if we already have instructions for the current set
+    if ([self.set.instructions count] > 0) {
+        self.instructionsArray = [NSMutableArray array];
+        for (Instructions *instr in self.set.instructions) {
+            [self.instructionsArray addObject:instr];
+        }
+        [self.activityIndicator stopAnimating];
+    } else {
+        [self searchForInstructions];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,22 +50,30 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     InstructionsDetailViewController *controller = (InstructionsDetailViewController *)[segue destinationViewController];
     
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
-    controller.pdfURLString = self.instructionsPDFs[indexPath.row];
+    Instructions *instructions = self.instructionsArray[indexPath.row];
+    //controller.pdfURLString = self.instructionsPDFs[indexPath.row];
+    controller.pdfURLString = instructions.pdfURL;
 }
 
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.instructionsImages count];
+    //return [self.instructionsImages count];
+    return [self.instructionsArray count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-    UIImageView *imageView = [cell viewWithTag:1000];
-    imageView.image = self.instructionsImages[indexPath.row];
+//    UIImageView *imageView = [cell viewWithTag:1000];
+    Instructions *instructions = self.instructionsArray[indexPath.row];
+//    NSData *imageData = instructions.image;
+//    UIImage *image = [UIImage imageWithData:imageData];
+//    imageView.image = image;
+    
+    [self configureCell:cell withInstructions:instructions];
     
     return cell;
 }
@@ -99,6 +111,19 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
 
 
 #pragma mark - Helper methods
+
+- (void)configureCell:(UICollectionViewCell *)cell withInstructions:(Instructions *)instructions {
+    UIImageView *imageView = [cell viewWithTag:1000];
+    UILabel *downloadSizeLabel = [cell viewWithTag:1001];
+    UILabel *descLabel = [cell viewWithTag:1002];
+    
+    NSData *imageData = instructions.image;
+    UIImage *image = [UIImage imageWithData:imageData];
+    imageView.image = image;
+    
+    downloadSizeLabel.text = instructions.downloadSize;
+    descLabel.text = instructions.desc;
+}
 
 - (void)searchForInstructions {
     // Add network request indicator to status bar
@@ -142,23 +167,39 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
                                        objectAtIndex:0]
                                       objectForKey:@"buildingInstructions"];
         
+        self.instructionsArray = [NSMutableArray array];
+        
         for (NSDictionary *instrItems in instructions) {
+            // Create new Instructions object
+            Instructions *instructions = [[Instructions alloc] initWithContext:self.managedObjectContext];
+            
             // Instructions Image
             NSString *instrImageURLString = [instrItems objectForKey:@"frontpageInfo"];
             NSURL *instrImageURL = [NSURL URLWithString:instrImageURLString];
             NSData *imageData = [NSData dataWithContentsOfURL:instrImageURL];
-            UIImage *image = [UIImage imageWithData:imageData];
-            if (!image) {
-                // Image url didn't work so use the placeholder image
-                image = [UIImage imageNamed:@"ImageUnavailable"];
+            if (!imageData) {
+                // If we couldn't pull the image down from the url, use the placeholder
+                UIImage *image = [UIImage imageNamed:@"ImageUnavailable"];
+                imageData = UIImagePNGRepresentation(image);
             }
-            [self.instructionsImages addObject:image];
+            instructions.image = imageData;
+            
             
             // PDF url
             NSString *pdf = [instrItems objectForKey:@"pdfLocation"];
             if (pdf) {
-                [self.instructionsPDFs addObject:pdf];
+                instructions.pdfURL = pdf;
             }
+            
+            // Description, download size
+            instructions.desc = [instrItems objectForKey:@"description"];
+            instructions.downloadSize = [instrItems objectForKey:@"downloadSize"];
+            
+            // Add it to the current set
+            instructions.set = self.set;
+            
+            // Add the new instructions object to the instructionsArray
+            [self.instructionsArray addObject:instructions];
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{

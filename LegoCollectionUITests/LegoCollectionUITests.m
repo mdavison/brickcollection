@@ -61,6 +61,16 @@
     [tablesQuery.staticTexts[@"41125"] tap];
     
     XCTAssert(app.staticTexts[@"242001"].exists);
+    
+    // Tap the building instructions
+    [tablesQuery.staticTexts[@"Building Instructions"] tap];
+    
+    XCTAssert([[app.collectionViews childrenMatchingType:XCUIElementTypeCell] containingType:XCUIElementTypeStaticText identifier:@"BI 3017 / 60+4 - 65/115g, 41125 2/2 V29"].element.exists);
+    
+    // Go back to set details
+    [app.navigationBars[@"Instructions"].buttons[@"Set Details"] tap];
+
+    // Return to Sets so tear-down can delete
     [app.navigationBars[@"Set Details"].buttons[@"My Sets"] tap];
 }
 

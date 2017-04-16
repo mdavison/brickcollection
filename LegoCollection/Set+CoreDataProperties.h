@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *productNumber;
 @property (nullable, nonatomic, retain) NSData *productImage;
 @property (nullable, nonatomic, retain) NSSet<Brick *> *bricks;
+@property (nullable, nonatomic, retain) NSSet<Instructions *> *instructions;
 
 @end
 

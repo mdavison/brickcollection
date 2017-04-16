@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		909962BD1EA2C72C007BBBA6 /* Instructions.m in Sources */ = {isa = PBXBuildFile; fileRef = 909962BA1EA2C72C007BBBA6 /* Instructions.m */; };
+		909962BE1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 909962BC1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.m */; };
 		90B8EE1F1E629252009BE58E /* SearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE1E1E629252009BE58E /* SearchTableViewController.m */; };
 		90B8EE221E6389D0009BE58E /* ResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE211E6389D0009BE58E /* ResultsTableViewController.m */; };
 		90B8EE251E65C2E2009BE58E /* SetTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90B8EE241E65C2E2009BE58E /* SetTableViewController.m */; };
@@ -51,6 +53,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		909962B91EA2C72C007BBBA6 /* Instructions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instructions.h; sourceTree = "<group>"; };
+		909962BA1EA2C72C007BBBA6 /* Instructions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instructions.m; sourceTree = "<group>"; };
+		909962BB1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Instructions+CoreDataProperties.h"; sourceTree = "<group>"; };
+		909962BC1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Instructions+CoreDataProperties.m"; sourceTree = "<group>"; };
 		90B8EE1D1E629252009BE58E /* SearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableViewController.h; sourceTree = "<group>"; };
 		90B8EE1E1E629252009BE58E /* SearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableViewController.m; sourceTree = "<group>"; };
 		90B8EE201E6389D0009BE58E /* ResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsTableViewController.h; sourceTree = "<group>"; };
@@ -91,6 +97,7 @@
 		90BCD7901E9D0B6200F4801B /* InstructionsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsDetailViewController.m; sourceTree = "<group>"; };
 		90BCD7921E9E56F900F4801B /* InstructionsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsCollectionViewController.h; sourceTree = "<group>"; };
 		90BCD7931E9E56F900F4801B /* InstructionsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsCollectionViewController.m; sourceTree = "<group>"; };
+		90BCD7951EA2BBF800F4801B /* LegoCollectionV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LegoCollectionV3.xcdatamodel; sourceTree = "<group>"; };
 		90C60B531E622740006941C0 /* LegoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LegoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C60B571E622740006941C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		90C60B591E622740006941C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,6 +136,10 @@
 		90B8EE441E82A88A009BE58E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				909962B91EA2C72C007BBBA6 /* Instructions.h */,
+				909962BA1EA2C72C007BBBA6 /* Instructions.m */,
+				909962BB1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.h */,
+				909962BC1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.m */,
 				90B8EE641E83F842009BE58E /* Set+CoreDataProperties.h */,
 				90B8EE651E83F842009BE58E /* Set+CoreDataProperties.m */,
 				90B8EE621E83F842009BE58E /* Set.h */,
@@ -397,9 +408,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				909962BD1EA2C72C007BBBA6 /* Instructions.m in Sources */,
 				90BCD7941E9E56F900F4801B /* InstructionsCollectionViewController.m in Sources */,
 				90B8EE401E796E90009BE58E /* InfoTableViewController.m in Sources */,
 				90B8EE3A1E7258CD009BE58E /* BrickResultsTableViewController.m in Sources */,
+				909962BE1EA2C72C007BBBA6 /* Instructions+CoreDataProperties.m in Sources */,
 				90C60B5B1E622740006941C0 /* AppDelegate.m in Sources */,
 				90C60B581E622740006941C0 /* main.m in Sources */,
 				90B8EE1F1E629252009BE58E /* SearchTableViewController.m in Sources */,
@@ -677,10 +690,11 @@
 		90B8EE461E83F04F009BE58E /* LegoCollection.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				90BCD7951EA2BBF800F4801B /* LegoCollectionV3.xcdatamodel */,
 				90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */,
 				90B8EE471E83F04F009BE58E /* LegoCollection.xcdatamodel */,
 			);
-			currentVersion = 90BCD76B1E93D23100F4801B /* LegoCollectionV2.xcdatamodel */;
+			currentVersion = 90BCD7951EA2BBF800F4801B /* LegoCollectionV3.xcdatamodel */;
 			path = LegoCollection.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

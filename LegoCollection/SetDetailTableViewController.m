@@ -173,6 +173,8 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     InstructionsCollectionViewController *controller = (InstructionsCollectionViewController *)segue.destinationViewController;
+    
+    controller.managedObjectContext = self.managedObjectContext;
     controller.set = self.set;
 }
 
@@ -184,7 +186,6 @@
     if (section == 0) {
         UIImageView *productImageView = [cell viewWithTag:2000];
         productImageView.image = [UIImage imageWithData:self.set.productImage];
-        NSLog(@"Product image: %@", self.set.productImage);
     } else if (section == 1) {
         // Instructions cell
     } else {

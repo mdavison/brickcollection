@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Set.h"
+#import "Instructions.h"
 #import "InstructionsDetailViewController.h"
 
 @interface InstructionsCollectionViewController : UICollectionViewController
+
+@property (nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 

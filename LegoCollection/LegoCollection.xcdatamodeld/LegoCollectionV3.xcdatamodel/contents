@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Brick" representedClassName="Brick" syncable="YES">
+        <attribute name="brickImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="itemNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="missing" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="set" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="bricks" inverseEntity="Set" syncable="YES"/>
+    </entity>
+    <entity name="Instructions" representedClassName="Instructions" syncable="YES">
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadSize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="pdfURL" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="set" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="instructions" inverseEntity="Set" syncable="YES"/>
+    </entity>
+    <entity name="Set" representedClassName="Set" syncable="YES">
+        <attribute name="displayOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="productImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="productNumber" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bricks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Brick" inverseName="set" inverseEntity="Brick" syncable="YES"/>
+        <relationship name="instructions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instructions" inverseName="set" inverseEntity="Instructions" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Brick" positionX="45" positionY="104" width="128" height="103"/>
+        <element name="Instructions" positionX="-326" positionY="87" width="128" height="118"/>
+        <element name="Set" positionX="-144" positionY="-108" width="128" height="135"/>
+    </elements>
+</model>
