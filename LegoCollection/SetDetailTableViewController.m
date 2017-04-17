@@ -185,7 +185,11 @@
 
     if (section == 0) {
         UIImageView *productImageView = [cell viewWithTag:2000];
-        productImageView.image = [UIImage imageWithData:self.set.productImage];
+        if (self.set.productImage) {
+            productImageView.image = [UIImage imageWithData:self.set.productImage];
+        } else {
+            productImageView.image = [UIImage imageNamed:@"SetDetailImageUnavailable"];
+        }
     } else if (section == 1) {
         // Instructions cell
     } else {

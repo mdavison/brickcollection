@@ -179,7 +179,7 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
             NSData *imageData = [NSData dataWithContentsOfURL:instrImageURL];
             if (!imageData) {
                 // If we couldn't pull the image down from the url, use the placeholder
-                UIImage *image = [UIImage imageNamed:@"ImageUnavailable"];
+                UIImage *image = [UIImage imageNamed:@"InstructionsImageUnavailable"];
                 imageData = UIImagePNGRepresentation(image);
             }
             instructions.image = imageData;

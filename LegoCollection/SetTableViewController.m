@@ -106,7 +106,11 @@
 
 - (void)configureCell:(UITableViewCell *)cell withSet:(Set *)set {
     UIImageView *setImageView = [cell viewWithTag:1000];
-    setImageView.image = [UIImage imageWithData:set.productImage];
+    if (set.productImage) {
+        setImageView.image = [UIImage imageWithData:set.productImage];
+    } else {
+        setImageView.image = [UIImage imageNamed:@"SetsImageUnavailable"];
+    }
     
     UILabel *setNameLabel = [cell viewWithTag:1001];
     setNameLabel.text = set.productName;
