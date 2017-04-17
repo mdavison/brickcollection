@@ -107,6 +107,14 @@
     return true;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:self.searchTextField]) {
+        [self doSearch];
+    } else if ([textField isEqual:self.brickSearchTextField]) {
+        [self doBrickSearch];
+    }
+    return true;
+}
 
 
 
@@ -136,6 +144,22 @@
 #pragma mark - Actions
 
 - (IBAction)search:(UIButton *)sender {
+    [self doSearch];
+}
+
+- (IBAction)brickSearch:(UIButton *)sender {
+    [self doBrickSearch];
+}
+
+- (IBAction)tap:(UITapGestureRecognizer *)sender {
+    [self.searchTextField resignFirstResponder];
+    [self.brickSearchTextField resignFirstResponder];
+}
+
+
+#pragma mark - Helper methods
+
+- (void)doSearch {
     self.brickSearchTextField.text = @"";
     [self.brickSearchButton setEnabled:false];
     
@@ -146,7 +170,7 @@
     [self performSearchRequest];
 }
 
-- (IBAction)brickSearch:(UIButton *)sender {
+- (void)doBrickSearch {
     self.searchTextField.text = @"";
     [self.searchButton setEnabled:false];
     
@@ -162,11 +186,6 @@
     }
     
     [self performSegueWithIdentifier:@"BrickResultsSegue" sender:foundBricks];
-}
-
-- (IBAction)tap:(UITapGestureRecognizer *)sender {
-    [self.searchTextField resignFirstResponder];
-    [self.brickSearchTextField resignFirstResponder];
 }
 
 - (void)cancelKeyboard {

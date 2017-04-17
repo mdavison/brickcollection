@@ -26,19 +26,25 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.foundBricks count];
+    if ([self.foundBricks count] == 0) {
+        return 1;
+    } else {
+        return [self.foundBricks count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BrickResultCell" forIndexPath:indexPath];
     
-    // Get the brick
-    Brick *brick = self.foundBricks[indexPath.row];
-    
-    [self configureCell:cell withBrick:brick];
-    
-    
+    if ([self.foundBricks count] == 0) {
+        [self configureCell:cell withBrick:NULL];
+    } else {
+        // Get the brick
+        Brick *brick = self.foundBricks[indexPath.row];
+        
+        [self configureCell:cell withBrick:brick];
+    }
     
     return cell;
 }
@@ -55,9 +61,14 @@
     UILabel *brickLabel = [cell viewWithTag:4001];
     UILabel *setLabel = [cell viewWithTag:4002];
     
-    brickImageView.image = [UIImage imageWithData:brick.brickImage];
-    brickLabel.text = [@"Item No: " stringByAppendingString:brick.itemNumber];
-    setLabel.text = [@"Set: " stringByAppendingString:brick.set.productName];
+    if (brick == NULL) {
+        brickLabel.text = [NSString localizedStringWithFormat:@"No bricks were found."];
+        setLabel.text = @"";
+    } else {
+        brickImageView.image = [UIImage imageWithData:brick.brickImage];
+        brickLabel.text = [[NSString localizedStringWithFormat:@"Item No: "] stringByAppendingString:brick.itemNumber];
+        setLabel.text = [[NSString localizedStringWithFormat:@"Set: "] stringByAppendingString:brick.set.productName];
+    }
 }
 
 @end

@@ -104,10 +104,23 @@
             productImageView.image = [UIImage imageWithData:self.set.productImage];
             
             if (self.error) {
-                if (self.error.code == 3840) {
-                    productNameLabel.text = [NSString localizedStringWithFormat:@"That set could not be found"];
-                } else {
-                    productNameLabel.text = self.error.localizedDescription;
+                NSLog(@"Search Error Code: %lu", self.error.code);
+//                if (self.error.code == 3840) {
+//                    productNameLabel.text = [NSString localizedStringWithFormat:@"That set could not be found"];
+//                } else {
+//                    productNameLabel.text = self.error.localizedDescription;
+//                }
+                
+                switch (self.error.code) {
+                    case 3840:
+                        productNameLabel.text = [NSString localizedStringWithFormat:@"Sorry, I couldn't find that Set."];
+                        break;
+                    case 18446744073709550614U:
+                        productNameLabel.text = [NSString localizedStringWithFormat:@"Oops! I don't think that was a valid set number."];
+                        break;
+                    default:
+                        productNameLabel.text = self.error.localizedDescription;
+                        break;
                 }
             }
         }
@@ -128,10 +141,10 @@
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0ul);
     
     dispatch_async(queue, ^{
-        // Create new Set
-        self.set = [[Set alloc] initWithContext:self.managedObjectContext];
-        
         if (!self.error) {
+            // Create new Set
+            self.set = [[Set alloc] initWithContext:self.managedObjectContext];
+            
             [self.navigationItem.rightBarButtonItem setEnabled:true];
             
             // Set properties
