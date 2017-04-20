@@ -10,8 +10,11 @@
 
 @interface ResultsTableViewController ()
 
-@property Set *set;
-@property bool haveSet;
+@property (nonatomic) bool haveSet;
+@property (nonatomic) NSString *productName;
+@property (nonatomic) NSString *productNumber;
+@property (nonatomic) NSData *productImageData;
+@property (nonatomic) NSMutableArray *bricks;
 
 @end
 
@@ -46,7 +49,7 @@
     if (section == 0) {
         return 1;
     } else {
-        return [self.set.bricks count];
+        return [self.bricks count];
     }
 }
 
@@ -76,13 +79,23 @@
 
 #pragma mark - Actions
 
-- (IBAction)cancel:(UIBarButtonItem *)sender {
-    [self.delegate resultsTableViewControllerDidCancel:self];
-}
-
 - (IBAction)addToSets:(UIBarButtonItem *)sender {
     if (!self.haveSet) {
-        [self.delegate resultsTableViewController:self didFinishAddingSet:self.set];
+        Set *set = [[Set alloc] initWithContext:self.managedObjectContext];
+        // Set properties
+        set.productName = self.productName;
+        set.productNumber = self.productNumber;
+        set.productImage = self.productImageData;
+        
+        // Need to loop through all the bricks and add the Set property
+        for (Brick *brick in self.bricks) {
+            brick.set = set;
+        }
+        
+        // Set the bricks property on Set
+        set.bricks = [NSSet setWithArray:self.bricks];
+        
+        [self.delegate resultsTableViewController:self didFinishAddingSet:set];
     }
 }
 
@@ -100,17 +113,10 @@
             productNameLabel.text = [NSString localizedStringWithFormat:@"\nYou already have that set 😀"];
             [activityIndicator stopAnimating];
         } else {
-            productNameLabel.text = self.set.productName;
-            productImageView.image = [UIImage imageWithData:self.set.productImage];
+            productNameLabel.text = self.productName;
+            productImageView.image = [UIImage imageWithData:self.productImageData];
             
             if (self.error) {
-                NSLog(@"Search Error Code: %lu", self.error.code);
-//                if (self.error.code == 3840) {
-//                    productNameLabel.text = [NSString localizedStringWithFormat:@"That set could not be found"];
-//                } else {
-//                    productNameLabel.text = self.error.localizedDescription;
-//                }
-                
                 switch (self.error.code) {
                     case 3840:
                         productNameLabel.text = [NSString localizedStringWithFormat:@"Sorry, I couldn't find that Set."];
@@ -125,7 +131,7 @@
             }
         }
     } else {
-        Brick *brick = [self.set.bricks allObjects][indexPath.row];
+        Brick *brick = self.bricks[indexPath.row];
 
         UIImageView *brickImageView = [cell viewWithTag:1001];
         UILabel *itemNumberLabel = [cell viewWithTag:1002];
@@ -142,46 +148,40 @@
     
     dispatch_async(queue, ^{
         if (!self.error) {
-            // Create new Set
-            self.set = [[Set alloc] initWithContext:self.managedObjectContext];
-            
-            [self.navigationItem.rightBarButtonItem setEnabled:true];
-            
-            // Set properties
-            self.set.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
-            self.set.productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
+            // Set properties - we can't create a new Set object here because it will get saved and user may not want it
+            self.productName = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductName"];
+            self.productNumber = [[self.jsonData objectForKey:@"Product"] objectForKey:@"ProductNo"];
             
             NSString *baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
             
             NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
             NSURL *productImageURL = [NSURL URLWithString:productImageString];
             NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
-            self.set.productImage = productImageData;
+            self.productImageData = productImageData;
             
             NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];
-            NSMutableArray *bricks = [NSMutableArray array];
+            self.bricks = [NSMutableArray array];
+            
             for (NSDictionary *brickDict in bricksJSON) {
                 // Create new brick
                 Brick *brick = [[Brick alloc] initWithContext:self.managedObjectContext];
                 
-                // Set properties
+                // Brick properties
                 brick.itemNumber = [NSString stringWithFormat:@"%@", [brickDict objectForKey:@"ItemNo"]];
                 
                 NSString *brickImage = [brickDict objectForKey:@"Asset"];
                 NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
                 NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
                 brick.brickImage = brickImageData;
-                brick.set = self.set;
                 
                 // Add to bricks array
-                [bricks addObject:brick];
+                [self.bricks addObject:brick];
             }
-            
-            self.set.bricks = [NSSet setWithArray:bricks];
         }
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            [self.navigationItem.rightBarButtonItem setEnabled:true];
         });
     });
 }

@@ -34,6 +34,8 @@
     XCUIElementQuery *tablesQuery = app.tables;
     [tablesQuery.textFields[@"setSearchTextField"] typeText:@"41125"];
     [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
+    // Wait for Add button to become tappable
+    [NSThread sleepForTimeInterval:7];
     [app.navigationBars[@"Results"].buttons[@"Add"] tap];
     [app.alerts[@"Added!"].buttons[@"OK"] tap];
     [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
@@ -64,6 +66,9 @@
     
     // Tap the building instructions
     [tablesQuery.staticTexts[@"Building Instructions"] tap];
+    
+    // Wait for info to load
+    [NSThread sleepForTimeInterval:3];
     
     XCTAssert([[app.collectionViews childrenMatchingType:XCUIElementTypeCell] containingType:XCUIElementTypeStaticText identifier:@"BI 3017 / 60+4 - 65/115g, 41125 2/2 V29"].element.exists);
     
@@ -162,19 +167,21 @@
     // Clear the search text field
     [tablesQuery.buttons[@"Clear text"] tap];
     // Enter the new set to search for
-    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"21029"];
+    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"10701"];
     [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
+    // Wait for Add button to become tappable
+    [NSThread sleepForTimeInterval:3];
     [app.navigationBars[@"Results"].buttons[@"Add"] tap];
     [app.alerts[@"Added!"].buttons[@"OK"] tap];
     [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
     [tabBarsQuery.buttons[@"Sets"] tap];
     // Assert the set exists
-    XCTAssert(app.staticTexts[@"Buckingham Palace"].exists);
+    XCTAssert(app.staticTexts[@"Gray Baseplate"].exists);
     
     // Tap the edit button in the navigation
     [app.navigationBars[@"My Sets"].buttons[@"Edit"] tap];
     
-    XCUIElement *topButton = app.tables.buttons[@"Reorder Buckingham Palace, 21029"];
+    XCUIElement *topButton = app.tables.buttons[@"Reorder Gray Baseplate, 10701"];
     XCUIElement *bottomButton = app.tables.buttons[@"Reorder Horse Vet Trailer, 41125"];
     
     // Drag the bottom button up to re-order
@@ -185,6 +192,10 @@
     XCTAssert(firstCell.staticTexts[@"Horse Vet Trailer"].exists);
     
     [app.navigationBars[@"My Sets"].buttons[@"Done"] tap];
+    
+    // Delete the second set (tear-down will delete the first set)
+    [tablesQuery.staticTexts[@"10701"] swipeLeft];
+    [tablesQuery.buttons[@"Delete"] tap];
 }
 
 - (void)testInfoScreen {

@@ -25,7 +25,6 @@
 @property (nonatomic) NSDictionary *jsonData;
 @property (nonatomic) NSError *error;
 
-- (IBAction)cancel:(UIBarButtonItem *)sender;
 - (IBAction)addToSets:(UIBarButtonItem *)sender;
 
 
