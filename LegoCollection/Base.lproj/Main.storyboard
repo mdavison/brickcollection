@@ -302,7 +302,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuY-pQ-qOq">
                                                     <rect key="frame" x="8" y="8" width="304" height="105.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <string key="text">LEGO®is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this app. Every effort has been made to create this app in accordance with the rules set forth in the LEGO Fair Play notice located at https://www.lego.com/en-us/legal/legal-notice/fair-play.</string>
+                                                    <string key="text">LEGO® is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this app. Every effort has been made to create this app in accordance with the rules set forth in the LEGO Fair Play notice located at https://www.lego.com/en-us/legal/legal-notice/fair-play.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
