@@ -157,6 +157,11 @@
             NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
             NSURL *productImageURL = [NSURL URLWithString:productImageString];
             NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
+            // If image unavailable, use the placeholder
+            if (!productImageData) {
+                UIImage *imageUnavailable = [UIImage imageNamed:@"SetDetailImageUnavailable"];
+                productImageData = UIImagePNGRepresentation(imageUnavailable);
+            }
             self.productImageData = productImageData;
             
             NSArray *bricksJSON = [NSMutableArray arrayWithArray:[self.jsonData objectForKey:@"Bricks"]];

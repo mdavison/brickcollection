@@ -290,10 +290,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
+                            <tableViewSection headerTitle="Disclaimer" id="VFN-ZZ-RJ8">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="3xH-TM-zDd">
+                                        <rect key="frame" x="0.0" y="55.5" width="320" height="122"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3xH-TM-zDd" id="EAa-Pm-vyl">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="121.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuY-pQ-qOq">
+                                                    <rect key="frame" x="8" y="8" width="304" height="105.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">LEGO®is a trademark of the LEGO Group of companies which does not sponsor, authorize or endorse this app. Every effort has been made to create this app in accordance with the rules set forth in the LEGO Fair Play notice located at https://www.lego.com/en-us/legal/legal-notice/fair-play.</string>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="wuY-pQ-qOq" firstAttribute="leading" secondItem="EAa-Pm-vyl" secondAttribute="leadingMargin" id="BOr-c9-2do"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wuY-pQ-qOq" secondAttribute="trailing" id="DlP-8g-SH1"/>
+                                                <constraint firstItem="wuY-pQ-qOq" firstAttribute="top" secondItem="EAa-Pm-vyl" secondAttribute="topMargin" id="aB8-ti-Xig"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wuY-pQ-qOq" secondAttribute="bottom" id="rJI-HR-BaT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Credits" id="cah-dW-J8v">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="VXu-sd-Zc9">
-                                        <rect key="frame" x="0.0" y="55.5" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="233.5" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VXu-sd-Zc9" id="ydN-74-QvH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
@@ -324,7 +351,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Ogr-ac-lhy">
-                                        <rect key="frame" x="0.0" y="134.5" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="312.5" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ogr-ac-lhy" id="Srq-pK-fax">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
@@ -359,7 +386,7 @@
                             <tableViewSection headerTitle="Developer" id="64C-p4-Xjs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="Wib-Zf-lKy">
-                                        <rect key="frame" x="0.0" y="269.5" width="320" height="79"/>
+                                        <rect key="frame" x="0.0" y="447.5" width="320" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wib-Zf-lKy" id="XGq-lo-3ay">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
@@ -390,7 +417,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JrL-s6-uZo">
-                                        <rect key="frame" x="0.0" y="348.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="526.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JrL-s6-uZo" id="j64-5p-UQh">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
