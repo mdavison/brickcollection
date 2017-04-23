@@ -25,39 +25,18 @@
     [[[XCUIApplication alloc] init] launch];
     
     // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    XCUIElementQuery *tabBarsQuery = app.tabBars;
-    [tabBarsQuery.buttons[@"Search"] tap];
-    
-    // Search for a set and add it to the collection
-    XCUIElementQuery *tablesQuery = app.tables;
-    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"41125"];
-    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
-    // Wait for Add button to become tappable
-    [NSThread sleepForTimeInterval:7];
-    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
-    [app.alerts[@"Added!"].buttons[@"OK"] tap];
-    [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
-    [tabBarsQuery.buttons[@"Sets"] tap];
-    XCTAssert(app.staticTexts[@"Horse Vet Trailer"].exists);
 }
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
-    XCUIApplication *app = [[XCUIApplication alloc] init];
-    
-    XCUIElementQuery *tablesQuery = app.tables;
-
-    // Delete set
-    [tablesQuery.staticTexts[@"41125"] swipeLeft];
-    [tablesQuery.buttons[@"Delete"] tap];
-    XCTAssert(!app.staticTexts[@"Horse Vet Trailer"].exists);
     
     [super tearDown];
 }
 
 - (void)testProductDetails {
+    // Add sample Set
+    [self addSetForID:@"41125"];
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     XCUIElementQuery *tablesQuery = app.tables;
     [tablesQuery.staticTexts[@"41125"] tap];
@@ -75,11 +54,17 @@
     // Go back to set details
     [app.navigationBars[@"Instructions"].buttons[@"Set Details"] tap];
 
-    // Return to Sets so tear-down can delete
+    // Return to Sets to delete
     [app.navigationBars[@"Set Details"].buttons[@"My Sets"] tap];
+    
+    // Delete sample Set
+    [self deleteSetForID:@"41125"];
 }
 
 - (void)testMissingBrick {
+    // Add sample Set
+    [self addSetForID:@"41125"];
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     XCUIElementQuery *tablesQuery = app.tables;
     XCUIElementQuery *tabBarsQuery = app.tabBars;
@@ -134,12 +119,18 @@
     XCTAssert(!toolBarsQuery.buttons[@"Missing"].isEnabled);
     XCTAssert(!toolBarsQuery.buttons[@"Found"].isEnabled);
     
-    // Navigate back to sets so tear-down can delete set
+    // Navigate back to Sets to delete set
     [app.navigationBars[@"Set Details"].buttons[@"My Sets"] tap];
     [tabBarsQuery.buttons[@"Sets"] tap];
+    
+    // Delete Set
+    [self deleteSetForID:@"41125"];
 }
 
 - (void)testBrickSearch {
+    // Add sample Set
+    [self addSetForID:@"41125"];
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     XCUIElementQuery *tabBarsQuery = app.tabBars;
     [tabBarsQuery.buttons[@"Search"] tap];
@@ -153,28 +144,22 @@
     // Assert the brick is in the Horse Vet Trailer set
     XCTAssert(app.staticTexts[@"Set: Horse Vet Trailer"].exists);
     
-    // Navigate back to sets so tear-down can delete set
+    // Navigate back to sets to delete set
     [tabBarsQuery.buttons[@"Sets"] tap];
+    
+    // Delete Set
+    [self deleteSetForID:@"41125"];
 }
 
 - (void)testRearrangingSets {
+    // Add first Set
+    [self addSetForID:@"41125"];
+    
     XCUIApplication *app = [[XCUIApplication alloc] init];
     
-    // Insert another set to make sure we have more than 1
-    XCUIElementQuery *tabBarsQuery = app.tabBars;
-    [tabBarsQuery.buttons[@"Search"] tap];
-    XCUIElementQuery *tablesQuery = app.tables;
-    // Clear the search text field
-    [tablesQuery.buttons[@"Clear text"] tap];
-    // Enter the new set to search for
-    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"10701"];
-    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
-    // Wait for Add button to become tappable
-    [NSThread sleepForTimeInterval:3];
-    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
-    [app.alerts[@"Added!"].buttons[@"OK"] tap];
-    [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
-    [tabBarsQuery.buttons[@"Sets"] tap];
+    // Insert second Set
+    [self addSetForID:@"10701"];
+    
     // Assert the set exists
     XCTAssert(app.staticTexts[@"Gray Baseplate"].exists);
     
@@ -188,14 +173,15 @@
     [bottomButton pressForDuration:0.5 thenDragToElement:topButton];
     
     // Assert that the bottom one is now the top one
+    XCUIElementQuery *tablesQuery = app.tables;
     XCUIElement *firstCell = [tablesQuery.cells elementBoundByIndex:0];
     XCTAssert(firstCell.staticTexts[@"Horse Vet Trailer"].exists);
     
     [app.navigationBars[@"My Sets"].buttons[@"Done"] tap];
     
-    // Delete the second set (tear-down will delete the first set)
-    [tablesQuery.staticTexts[@"10701"] swipeLeft];
-    [tablesQuery.buttons[@"Delete"] tap];
+    // Delete Sets
+    [self deleteSetForID:@"10701"];
+    [self deleteSetForID:@"41125"];
 }
 
 - (void)testInfoScreen {
@@ -217,6 +203,47 @@
     
     // Navigate back to sets so tear-down can delete set
     [tabBarsQuery.buttons[@"Sets"] tap];
+}
+
+
+#pragma mark - Helper methods
+
+- (void)addSetForID:(NSString *)setID {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Search"] tap];
+    
+    // Clear the search text field if needed
+    XCUIElementQuery *tablesQuery = app.tables;
+    if (tablesQuery.buttons[@"Clear text"].exists) {
+        [tablesQuery.buttons[@"Clear text"] tap];
+    }
+    
+    // Search for a set and add it to the collection
+    [tablesQuery.textFields[@"setSearchTextField"] typeText:setID];
+    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
+    
+    // Wait for Add button to become tappable
+    [NSThread sleepForTimeInterval:10];
+    
+    // Add the Set
+    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
+    [app.alerts[@"Added!"].buttons[@"OK"] tap];
+    
+    // Tap anywhere to dismiss keyboard so tab bar becomes visible
+    [[app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element tap];
+    
+    // Tap the Sets button in the tab bar
+    [tabBarsQuery.buttons[@"Sets"] tap];
+
+}
+
+- (void)deleteSetForID:(NSString *)setID {
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tablesQuery = app.tables;
+    
+    [tablesQuery.staticTexts[setID] swipeLeft];
+    [tablesQuery.buttons[@"Delete"] tap];
 }
 
 
