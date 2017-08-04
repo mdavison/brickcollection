@@ -68,21 +68,15 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     XCUIElementQuery *tablesQuery = app.tables;
     XCUIElementQuery *tabBarsQuery = app.tabBars;
-    XCUIElementQuery *toolBarsQuery = app.toolbars;
     
     // Select a Set
     [tablesQuery.staticTexts[@"41125"] tap];
     
-    // Select a Brick
-    [tablesQuery.staticTexts[@"242001"] tap];
-    
-    // "Missing" toolbar button should be enabled
-    XCTAssert(toolBarsQuery.buttons[@"Missing"].isEnabled);
-    // "Found" toolbar button should not be enabled
-    XCTAssert(!toolBarsQuery.buttons[@"Found"].isEnabled);
+    // Swipe on a brick
+    [tablesQuery.staticTexts[@"242001"] swipeLeft];
     
     // Set it to missing
-    [toolBarsQuery.buttons[@"Missing"] tap];
+    [tablesQuery.buttons[@"Mark Missing"] tap];
     
     // Go to missing bricks and see if it shows up there
     [app.navigationBars[@"Set Details"].buttons[@"My Sets"] tap];
@@ -97,27 +91,9 @@
     [tabBarsQuery.buttons[@"Sets"] tap];
     [tablesQuery.staticTexts[@"41125"] tap];
     
-    // Select the missing brick
-    [tablesQuery.staticTexts[@"242001"] tap];
-    
-    // "Found" toolbar button should be enabled
-    XCTAssert(toolBarsQuery.buttons[@"Found"].isEnabled);
-    // "Missing" toolbar button should not be enabled
-    XCTAssert(!toolBarsQuery.buttons[@"Missing"].isEnabled);
-    
     // Set missing brick to Found
-    [toolBarsQuery.buttons[@"Found"] tap];
-    
-    // Select a different brick and set to Missing
-    [tablesQuery.staticTexts[@"3003941"] tap];
-    XCTAssert(toolBarsQuery.buttons[@"Missing"].isEnabled);
-    [toolBarsQuery.buttons[@"Missing"] tap];
-    
-    // Select both a missing and a found brick and assert that neither toolbar button is enabled
-    [tablesQuery.staticTexts[@"242001"] tap];
-    [tablesQuery.staticTexts[@"3003941"] tap];
-    XCTAssert(!toolBarsQuery.buttons[@"Missing"].isEnabled);
-    XCTAssert(!toolBarsQuery.buttons[@"Found"].isEnabled);
+    [tablesQuery.staticTexts[@"242001"] swipeLeft];
+    [tablesQuery.buttons[@"Mark Found"] tap];
     
     // Navigate back to Sets to delete set
     [app.navigationBars[@"Set Details"].buttons[@"My Sets"] tap];
@@ -205,6 +181,28 @@
     [tabBarsQuery.buttons[@"Sets"] tap];
 }
 
+- (void)testThrowAway {
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Search"] tap];
+    
+    XCUIElementQuery *tablesQuery = app.tables;
+    [tablesQuery.textFields[@"setSearchTextField"] typeText:@"41125"];
+    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
+    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
+    [app.alerts[@"Added!"].buttons[@"OK"] tap];
+    [tabBarsQuery.buttons[@"Sets"] tap];
+    [tablesQuery.staticTexts[@"41125"] tap];
+    [tablesQuery.staticTexts[@"Swipe to mark missing"] swipeUp];
+    
+    XCUIElement *staticText = tablesQuery.staticTexts[@"242001"];
+    [staticText swipeLeft];
+    [staticText swipeLeft];
+    [staticText swipeLeft];
+    [tablesQuery.buttons[@"Mark Missing"] tap];
+    
+}
 
 #pragma mark - Helper methods
 
@@ -224,7 +222,7 @@
     [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
     
     // Wait for Add button to become tappable
-    [NSThread sleepForTimeInterval:10];
+    [NSThread sleepForTimeInterval:15];
     
     // Add the Set
     [app.navigationBars[@"Results"].buttons[@"Add"] tap];
@@ -245,6 +243,8 @@
     [tablesQuery.staticTexts[setID] swipeLeft];
     [tablesQuery.buttons[@"Delete"] tap];
 }
+
+
 
 
 @end
