@@ -20,15 +20,6 @@
     self.searchTextField.delegate = self;
     self.brickSearchTextField.delegate = self;
     
-    // Add a toolbar to the keyboard with a Cancel button
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    UIBarButtonItem *toolbarCancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                            style:UIBarButtonItemStylePlain target:self
-                                                                           action:@selector(cancelKeyboard)];
-    [toolbar setItems:[NSArray arrayWithObjects:toolbarCancelButton, nil]];
-    self.searchTextField.inputAccessoryView = toolbar;
-    self.brickSearchTextField.inputAccessoryView = toolbar;
-    
     [super viewDidLoad];
 }
 
@@ -186,11 +177,6 @@
     }
     
     [self performSegueWithIdentifier:@"BrickResultsSegue" sender:foundBricks];
-}
-
-- (void)cancelKeyboard {
-    [self.searchTextField resignFirstResponder];
-    [self.brickSearchTextField resignFirstResponder];
 }
 
 - (void)performSearchRequest {

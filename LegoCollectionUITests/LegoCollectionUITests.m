@@ -181,27 +181,34 @@
     [tabBarsQuery.buttons[@"Sets"] tap];
 }
 
-- (void)testThrowAway {
-    
+- (void)testDismissKeyboardByTappingScreen {
     XCUIApplication *app = [[XCUIApplication alloc] init];
-    XCUIElementQuery *tabBarsQuery = app.tabBars;
-    [tabBarsQuery.buttons[@"Search"] tap];
+    [app.tabBars.buttons[@"Search"] tap];
     
     XCUIElementQuery *tablesQuery = app.tables;
+    
+    // Assert keyboard appears
+    XCTAssertEqual(app.keyboards.count, 1);
     [tablesQuery.textFields[@"setSearchTextField"] typeText:@"41125"];
-    [[tablesQuery.cells containingType:XCUIElementTypeTextField identifier:@"setSearchTextField"].buttons[@"Search"] tap];
-    [app.navigationBars[@"Results"].buttons[@"Add"] tap];
-    [app.alerts[@"Added!"].buttons[@"OK"] tap];
-    [tabBarsQuery.buttons[@"Sets"] tap];
-    [tablesQuery.staticTexts[@"41125"] tap];
-    [tablesQuery.staticTexts[@"Swipe to mark missing"] swipeUp];
     
-    XCUIElement *staticText = tablesQuery.staticTexts[@"242001"];
-    [staticText swipeLeft];
-    [staticText swipeLeft];
-    [staticText swipeLeft];
-    [tablesQuery.buttons[@"Mark Missing"] tap];
+    // Tap outside the text field
+    XCUIElement *searchForSetTable = [app.tables containingType:XCUIElementTypeOther identifier:@"SEARCH FOR SET"].element;
+    [searchForSetTable tap];
     
+    // Assert keyboard dismissed
+    XCTAssertEqual(app.keyboards.count, 0);
+    
+    // Tap the other text field
+    [tablesQuery.textFields[@"brickSearchTextField"] tap];
+    
+    // Assert keyboard appears
+    XCTAssertEqual(app.keyboards.count, 1);
+    
+    // Tap outside the text field
+    [searchForSetTable tap];
+    
+    // Assert keyboard dismissed
+    XCTAssertEqual(app.keyboards.count, 0);
 }
 
 #pragma mark - Helper methods
