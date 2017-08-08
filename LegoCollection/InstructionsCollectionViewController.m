@@ -163,6 +163,32 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     
     dispatch_async(queue, ^{
         
+        // Handle whan building instructions don't exist
+        if ([[self.jsonData objectForKey:@"products"] count] == 0 || [[[[self.jsonData objectForKey:@"products"]
+                                                                       objectAtIndex:0]
+                                                                      objectForKey:@"buildingInstructions"] count] == 0) {
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self.collectionView reloadData];
+                [self.activityIndicator stopAnimating];
+                
+                NSString *message = NSLocalizedString(@"Unable to find instructions for this set.", NULL);
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Not Found"
+                                                                               message:message
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            });
+            
+            return;
+            
+        }
+        
+        
         NSDictionary *instructions = [[[self.jsonData objectForKey:@"products"]
                                        objectAtIndex:0]
                                       objectForKey:@"buildingInstructions"];
