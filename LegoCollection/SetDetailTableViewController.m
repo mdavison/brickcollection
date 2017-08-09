@@ -10,10 +10,6 @@
 
 @interface SetDetailTableViewController ()
 
-//@property (nonatomic) NSMutableArray *selectedBricks;
-//@property (nonatomic) Brick *selectedBrick;
-//@property (nonatomic) UIBarButtonItem *missingButton;
-//@property (nonatomic) UIBarButtonItem *foundButton;
 @property (nonatomic) NSArray *orderedBricks;
 
 @end
@@ -23,22 +19,8 @@
 
 - (void)viewDidLoad {
     self.title = @"Set Details";
-    //self.tableView.allowsMultipleSelection = YES;
-    
     
     [super viewDidLoad];
-    
-//    self.missingButton = [[UIBarButtonItem alloc] initWithTitle:@"Missing"
-//                                                                      style:UIBarButtonItemStylePlain
-//                                                                     target:self
-//                                                                     action:@selector(addToMissingBricks)];
-//    
-//    self.foundButton = [[UIBarButtonItem alloc] initWithTitle:@"Found"
-//                                                                    style:UIBarButtonItemStylePlain
-//                                                                   target:self
-//                                                                   action:@selector(removeFromMissingBricks)];
-//    
-//    [self addToolbar];
     
     // Sort the bricks
     NSSortDescriptor *missingBrickSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"missing" ascending:NO];
@@ -143,11 +125,6 @@
     return [[NSArray alloc] initWithObjects:button, nil];
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 2) {
-//    }
-//}
-
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         NSString *title = self.set.productName;
@@ -193,21 +170,12 @@
         // Get the views
         UIImageView *brickImageView = [cell viewWithTag:2002];
         UILabel *itemNumberLabel = [cell viewWithTag:2003];
-        //UIImageView *checkmarkImageView = [cell viewWithTag:2005];
         UIImageView *missingImageView = [cell viewWithTag:2004];
         
-        //Brick *brick = [self.set.bricks allObjects][indexPath.row];
         Brick *brick = self.orderedBricks[indexPath.row];
         
         brickImageView.image = [UIImage imageWithData:brick.brickImage];
         itemNumberLabel.text = brick.itemNumber;
-        
-        // Set the selected checkmark
-//        if ([cell isSelected]) {
-//            [checkmarkImageView setHidden:false];
-//        } else {
-//            [checkmarkImageView setHidden:true];
-//        }
         
         // Set the missing icon
         if (brick.missing == true) {
@@ -218,85 +186,5 @@
 
     }
 }
-
-//- (void)addToolbar {
-//    UIBarButtonItem *flexButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-//                                                                                    target:self
-//                                                                                    action:nil];
-//    
-//    [self setToolbarItems:[NSArray arrayWithObjects:self.missingButton, flexButton, self.foundButton, nil]];
-//}
-
-//- (void)addToMissingBricks {
-//    // Add missing property to each brick
-//    for (Brick *brick in self.selectedBricks) {
-//        brick.missing = true;
-//    }
-//    
-//    [self.selectedBricks removeAllObjects];
-//    
-//    // Hide the toolbar
-//    [self.navigationController setToolbarHidden:YES animated:YES];
-//    
-//    [self.tableView reloadData];
-//}
-//
-//- (void)removeFromMissingBricks {
-//    for (Brick *brick in self.selectedBricks) {
-//        brick.missing = false;
-//    }
-//    
-//    [self.selectedBricks removeAllObjects];
-//    
-//    // Hide the toolbar
-//    [self.navigationController setToolbarHidden:YES animated:YES];
-//    
-//    [self.tableView reloadData];
-//}
-
-//- (void)toggleToolbarButtons {
-//    // Find out if the selected bricks all have the same "missing" property value or not
-//    bool missing = false;
-//    bool notMissing = false;
-//    
-//    for (Brick *brick in self.selectedBricks) {
-//        if (brick.missing == true) {
-//            missing = true;
-//        } else {
-//            notMissing = true;
-//        }
-//    }
-//    
-//    if (missing && notMissing) {
-//        // We have a mixed batch and both buttons should be disabled
-//        [self.missingButton setEnabled:false];
-//        [self.foundButton setEnabled:false];
-//    } else {
-//        if (missing && !notMissing) { // All selected bricks are missing
-//            [self.foundButton setEnabled:true];
-//            [self.missingButton setEnabled:false];
-//        }
-//        
-//        if (notMissing && !missing) { // No selected bricks are missing
-//            [self.foundButton setEnabled:false];
-//            [self.missingButton setEnabled:true];
-//        }
-//    }
-//}
-
-//- (void)toggleCheckmarkOn:(bool)on forIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-//    UIImageView *checkmarkImage = [cell viewWithTag:2005];
-//    
-//    if (on) {
-//        // Find out if the cell is selected
-//        if ([cell isSelected]) {
-//            [checkmarkImage setHidden:false];
-//        }
-//    } else {
-//        [checkmarkImage setHidden:true];
-//    }
-//}
-
 
 @end

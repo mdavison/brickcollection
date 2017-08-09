@@ -51,7 +51,6 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     
     NSIndexPath *indexPath = [self.collectionView indexPathForCell:sender];
     Instructions *instructions = self.instructionsArray[indexPath.row];
-    //controller.pdfURLString = self.instructionsPDFs[indexPath.row];
     controller.pdfURLString = instructions.pdfURL;
 }
 
@@ -59,7 +58,6 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    //return [self.instructionsImages count];
     return [self.instructionsArray count];
 }
 
@@ -67,11 +65,7 @@ static NSString * const reuseIdentifier = @"InstructionsCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
     // Configure the cell
-//    UIImageView *imageView = [cell viewWithTag:1000];
     Instructions *instructions = self.instructionsArray[indexPath.row];
-//    NSData *imageData = instructions.image;
-//    UIImage *image = [UIImage imageWithData:imageData];
-//    imageView.image = image;
     
     [self configureCell:cell withInstructions:instructions];
     

@@ -154,12 +154,14 @@
             
             NSString *baseImageURL = [self.jsonData objectForKey:@"ImageBaseUrl"];
             
+            // Placeholder image in case image not available
+            UIImage *imageUnavailable = [UIImage imageNamed:@"SetDetailImageUnavailable"];
+            
             NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
             NSURL *productImageURL = [NSURL URLWithString:productImageString];
             NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
             // If image unavailable, use the placeholder
             if (!productImageData) {
-                UIImage *imageUnavailable = [UIImage imageNamed:@"SetDetailImageUnavailable"];
                 productImageData = UIImagePNGRepresentation(imageUnavailable);
             }
             self.productImageData = productImageData;
@@ -177,6 +179,10 @@
                 NSString *brickImage = [brickDict objectForKey:@"Asset"];
                 NSURL *brickImageURL = [NSURL URLWithString:[baseImageURL stringByAppendingString:brickImage]];
                 NSData *brickImageData = [NSData dataWithContentsOfURL:brickImageURL];
+                if (!brickImageData) {
+                    brickImageData = UIImagePNGRepresentation(imageUnavailable);
+                }
+                
                 brick.brickImage = brickImageData;
                 
                 // Add to bricks array
