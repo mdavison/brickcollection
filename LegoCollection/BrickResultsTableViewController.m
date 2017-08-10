@@ -60,6 +60,8 @@
     UIImageView *brickImageView = [cell viewWithTag:4000];
     UILabel *brickLabel = [cell viewWithTag:4001];
     UILabel *setLabel = [cell viewWithTag:4002];
+    UIImageView *missingImageView = [cell viewWithTag:4003];
+    
     
     if (brick == NULL) {
         brickLabel.text = [NSString localizedStringWithFormat:@"No bricks were found."];
@@ -68,6 +70,13 @@
         brickImageView.image = [UIImage imageWithData:brick.brickImage];
         brickLabel.text = [[NSString localizedStringWithFormat:@"Item No: "] stringByAppendingString:brick.itemNumber];
         setLabel.text = [[NSString localizedStringWithFormat:@"Set: "] stringByAppendingString:brick.set.productName];
+        
+        // Set the missing icon
+        if (brick.missing == true) {
+            [missingImageView setHidden:false];
+        } else {
+            [missingImageView setHidden:true];
+        }
     }
 }
 

@@ -545,35 +545,44 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="111.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="4001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPx-vF-VnA">
+                                            <rect key="frame" x="145" y="8" width="167" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="4002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set: " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrK-kM-tsd">
+                                            <rect key="frame" x="145" y="37" width="167" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" tag="4003" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exclamation" translatesAutoresizingMaskIntoConstraints="NO" id="VrD-dZ-wPf">
+                                            <rect key="frame" x="8" y="43.5" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="ioU-9p-zIc"/>
+                                                <constraint firstAttribute="height" constant="25" id="tD1-Z5-USE"/>
+                                            </constraints>
+                                        </imageView>
                                         <imageView userInteractionEnabled="NO" tag="4000" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b8e-KK-Iwa">
-                                            <rect key="frame" x="8" y="7" width="96" height="96"/>
+                                            <rect key="frame" x="41" y="8" width="96" height="96"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="96" id="eFs-Ei-3gP"/>
                                                 <constraint firstAttribute="width" constant="96" id="ncp-8K-7tQ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="4001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPx-vF-VnA">
-                                            <rect key="frame" x="112" y="8" width="200" height="21"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="4002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrK-kM-tsd">
-                                            <rect key="frame" x="112" y="37" width="200" height="21"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="b8e-KK-Iwa" firstAttribute="leading" secondItem="D5z-15-ADT" secondAttribute="leadingMargin" id="0o2-fB-J34"/>
+                                        <constraint firstItem="VrD-dZ-wPf" firstAttribute="centerY" secondItem="D5z-15-ADT" secondAttribute="centerY" id="Uis-Jy-dzk"/>
                                         <constraint firstItem="BrK-kM-tsd" firstAttribute="top" secondItem="oPx-vF-VnA" secondAttribute="bottom" constant="8" symbolic="YES" id="Wc0-VV-bOT"/>
                                         <constraint firstItem="oPx-vF-VnA" firstAttribute="top" secondItem="D5z-15-ADT" secondAttribute="topMargin" id="XN0-OE-g2b"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="VrD-dZ-wPf" secondAttribute="leading" id="YkX-0f-VlW"/>
                                         <constraint firstItem="b8e-KK-Iwa" firstAttribute="centerY" secondItem="D5z-15-ADT" secondAttribute="centerY" id="e7Q-Lu-8XG"/>
                                         <constraint firstItem="oPx-vF-VnA" firstAttribute="leading" secondItem="b8e-KK-Iwa" secondAttribute="trailing" constant="8" symbolic="YES" id="iqd-zl-MrU"/>
                                         <constraint firstItem="BrK-kM-tsd" firstAttribute="trailing" secondItem="D5z-15-ADT" secondAttribute="trailingMargin" id="kCC-wb-eme"/>
                                         <constraint firstItem="oPx-vF-VnA" firstAttribute="trailing" secondItem="D5z-15-ADT" secondAttribute="trailingMargin" id="lJP-wd-slX"/>
                                         <constraint firstItem="BrK-kM-tsd" firstAttribute="leading" secondItem="b8e-KK-Iwa" secondAttribute="trailing" constant="8" symbolic="YES" id="vGj-Re-QsW"/>
+                                        <constraint firstItem="b8e-KK-Iwa" firstAttribute="leading" secondItem="VrD-dZ-wPf" secondAttribute="trailing" constant="8" symbolic="YES" id="vqe-Xf-yKW"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -586,7 +595,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euG-F7-1Gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="-134"/>
+            <point key="canvasLocation" x="1951.875" y="-134.1549295774648"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TCR-M3-h25">
