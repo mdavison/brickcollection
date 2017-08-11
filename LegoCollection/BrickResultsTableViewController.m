@@ -53,6 +53,47 @@
     return 112.0;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return true;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // Get the selected cell
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    // Get the brick
+    //Brick *brick = self.orderedBricks[indexPath.row];
+    Brick *brick = self.foundBricks[indexPath.row];
+    
+    // Get the missing brick icon view
+    UIImageView *missingImageView = [cell viewWithTag:4003];
+    
+    NSString *buttonTitle = brick.missing ? NSLocalizedString(@"Mark\nFound", @"Mark as found") : NSLocalizedString(@"Mark\nMissing", @"Mark as missing");
+    UIColor *missingColor = [UIColor colorWithRed:208.0/255.0 green:16.0/255.0 blue:4.0/255.0 alpha:1.0];
+    UIColor *foundColor = [UIColor colorWithRed:0 green:128.0/255.0 blue:64.0/255.0 alpha:1.0];
+    UIColor *buttonBackgroundColor = brick.missing ? foundColor : missingColor;
+    
+    // Create custom button
+    UITableViewRowAction *button = [UITableViewRowAction
+                                    rowActionWithStyle:UITableViewRowActionStyleDefault
+                                    title:buttonTitle
+                                    handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+                                        // Toggle the brick's missing status
+                                        brick.missing = !brick.missing;
+                                        
+                                        // Show or hide the "missing" icon
+                                        [missingImageView setHidden:!brick.missing];
+                                        
+                                        // End the editing
+                                        [self.tableView setEditing:NO];
+                                    }];
+    
+    button.backgroundColor = buttonBackgroundColor;
+    
+    return [[NSArray alloc] initWithObjects:button, nil];
+}
+
 
 #pragma mark - Helper methods
 
