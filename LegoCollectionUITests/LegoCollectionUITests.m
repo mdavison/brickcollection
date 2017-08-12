@@ -120,6 +120,14 @@
     // Assert the brick is in the Horse Vet Trailer set
     XCTAssert(app.staticTexts[@"Set: Horse Vet Trailer"].exists);
     
+    // Mark it missing
+    [tablesQuery.staticTexts[@"Item No: 242001"] swipeLeft];
+    [tablesQuery.buttons[@"Mark Missing"] tap];
+    
+    // Go to missing bricks and see if it shows up there
+    [tabBarsQuery.buttons[@"Missing"] tap];
+    XCTAssert(app.staticTexts[@"Item No: 242001"].exists);
+    
     // Navigate back to sets to delete set
     [tabBarsQuery.buttons[@"Sets"] tap];
     
@@ -173,12 +181,8 @@
     
     // Tap the Rate button
     [tablesQuery.buttons[@"Rate"] tap];
-    [[[app childrenMatchingType:XCUIElementTypeOther] elementBoundByIndex:0].otherElements[@"Rating"] tap];
-    XCTAssert(app.staticTexts[@"Cancel"].exists);
-    [app.staticTexts[@"Cancel"] tap];
-    
-    // Navigate back to sets so tear-down can delete set
-    [tabBarsQuery.buttons[@"Sets"] tap];
+
+    [app.staticTexts[@"Not Now"] tap];
 }
 
 - (void)testDismissKeyboardByTappingScreen {
