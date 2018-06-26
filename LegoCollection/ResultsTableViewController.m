@@ -157,9 +157,18 @@
             // Placeholder image in case image not available
             UIImage *imageUnavailable = [UIImage imageNamed:@"SetDetailImageUnavailable"];
             
-            NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
+//            NSString *productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
+            NSString *productImageString = [[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"];
             NSURL *productImageURL = [NSURL URLWithString:productImageString];
             NSData *productImageData = [NSData dataWithContentsOfURL:productImageURL];
+            
+            // If image unavailable from the Asset node, maybe the full URL isn't there and try appending the baseImageURL to it
+            if (!productImageData) {
+                productImageString = [baseImageURL stringByAppendingString:[[self.jsonData objectForKey:@"Product"] objectForKey:@"Asset"]];
+                productImageURL = [NSURL URLWithString:productImageString];
+                productImageData = [NSData dataWithContentsOfURL:productImageURL];
+            }
+            
             // If image unavailable, use the placeholder
             if (!productImageData) {
                 productImageData = UIImagePNGRepresentation(imageUnavailable);
