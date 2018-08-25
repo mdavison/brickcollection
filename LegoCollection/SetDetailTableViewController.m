@@ -142,14 +142,38 @@
     return nil;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"tapped row");
+}
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    InstructionsCollectionViewController *controller = (InstructionsCollectionViewController *)segue.destinationViewController;
-    
-    controller.managedObjectContext = self.managedObjectContext;
-    controller.set = self.set;
+    if ([segue.identifier isEqualToString:@"FindBrickInOtherSetSegue"]) {
+        BrickResultsTableViewController *controller = (BrickResultsTableViewController *)segue.destinationViewController;
+        
+        // todo: do brick search like in SearchTableViewController.m
+        // get the brick user tapped on
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSMutableArray *foundBricks = [NSMutableArray array];
+        Brick *selectedBrick = self.orderedBricks[indexPath.row];
+        
+        NSArray *allSets = [Set getAllWithManagedObjectContext:self.managedObjectContext];
+        for (Set *set in allSets) {
+            for (Brick *brick in set.bricks) {
+                if ([brick.itemNumber isEqualToString:selectedBrick.itemNumber]) {
+                    [foundBricks addObject:brick];
+                }
+            }
+        }
+        
+        controller.foundBricks = foundBricks;
+    } else {
+        InstructionsCollectionViewController *controller = (InstructionsCollectionViewController *)segue.destinationViewController;
+        
+        controller.managedObjectContext = self.managedObjectContext;
+        controller.set = self.set;
+    }
 }
 
 

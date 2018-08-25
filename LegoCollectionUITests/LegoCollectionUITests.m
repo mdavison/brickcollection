@@ -47,7 +47,7 @@
     [tablesQuery.staticTexts[@"Building Instructions"] tap];
     
     // Wait for info to load
-    [NSThread sleepForTimeInterval:3];
+    [NSThread sleepForTimeInterval:5];
     
     XCTAssert([[app.collectionViews childrenMatchingType:XCUIElementTypeCell] containingType:XCUIElementTypeStaticText identifier:@"BI 3017 / 60+4 - 65/115g, 41125 2/2 V29"].element.exists);
     

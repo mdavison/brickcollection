@@ -10,6 +10,7 @@
 #import "Set.h"
 #import "Brick.h"
 #import "InstructionsCollectionViewController.h"
+#import "BrickResultsTableViewController.h"
 
 @interface SetDetailTableViewController : UITableViewController
 
