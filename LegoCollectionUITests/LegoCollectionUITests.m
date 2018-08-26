@@ -218,6 +218,39 @@
     XCTAssertEqual(app.keyboards.count, 0);
 }
 
+- (void)testTapBrickToSearch {
+    // Add the first set
+    [self addSetForID:@"41125"];
+    
+    // Add another set that has at least one brick the same
+    [self addSetForID:@"60072"];
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    // Tap Sets
+    XCUIElementQuery *tabBarsQuery = app.tabBars;
+    [tabBarsQuery.buttons[@"Sets"] tap];
+    
+    XCUIElementQuery *tablesQuery = app.tables;
+    
+    // Select a Set
+    [tablesQuery.staticTexts[@"60072"] tap];
+    
+    // Tap on a brick
+    [tablesQuery.staticTexts[@"300401"] tap];
+    
+    // Assert it goes to the Results view and the brick shows up for 2 sets
+    XCTAssert(app.staticTexts[@"Set: Horse Vet Trailer"].exists);
+    XCTAssert(app.staticTexts[@"Set: Demolition Starter Set"].exists);
+    
+    // Navigate back to sets to delete set
+    [tabBarsQuery.buttons[@"Sets"] tap];
+    
+    // Delete the sets
+    [self deleteSetForID:@"41125"];
+    [self deleteSetForID:@"60072"];
+}
+
 #pragma mark - Helper methods
 
 - (void)addSetForID:(NSString *)setID {
